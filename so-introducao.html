@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introdução aos S.O. — Aula 1</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="so" data-page="introducao">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="so.html">Sistemas Operacionais</a><span>›</span> Introdução</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip so">Aula 1 • Sistemas Operacionais</span>
+          <h1>O que é um Sistema Operacional?</h1>
+          <p class="lead">
+            Um <strong>Sistema Operacional (S.O.)</strong> é o programa mais importante de um computador.
+            Ele é o “gerente” que fica entre o <em>hardware</em> (a parte física) e os <em>aplicativos</em>
+            (o que você usa), controlando tudo para que funcione em harmonia.
+          </p>
+
+          <h2>Uma analogia simples</h2>
+          <p>
+            Imagine uma escola. Os alunos são os <strong>programas</strong> (Chrome, Word, Spotify).
+            As salas, quadras, merenda e professores são os <strong>recursos</strong> (CPU, memória,
+            disco, impressora, rede). O <strong>sistema operacional</strong> é a <em>direção da escola</em>:
+            decide quem usa o que e quando, evita confusão e resolve problemas.
+          </p>
+
+          <div class="callout info">
+            <strong>Resumindo:</strong>
+            O S.O. é um software que (1) <em>controla o hardware</em>, (2) <em>oferece serviços aos aplicativos</em>
+            e (3) <em>protege</em> o usuário de erros e acessos indevidos.
+          </div>
+
+          <h2>Para que serve, na prática?</h2>
+          <ul>
+            <li><strong>Executar programas</strong> — carrega na memória e dá tempo de CPU.</li>
+            <li><strong>Gerenciar memória</strong> — decide quanta RAM cada programa pode usar.</li>
+            <li><strong>Gerenciar arquivos</strong> — organiza pastas, permissões e o disco (HD/SSD).</li>
+            <li><strong>Controlar dispositivos</strong> — teclado, mouse, rede, impressora (via <em>drivers</em>).</li>
+            <li><strong>Oferecer uma interface</strong> — janelas, ícones (GUI) ou linha de comando (CLI).</li>
+            <li><strong>Segurança e permissões</strong> — separa usuários, impede que um programa invada outro.</li>
+          </ul>
+
+          <h2>Quais S.O. você já usou hoje?</h2>
+          <table>
+            <thead><tr><th>Dispositivo</th><th>Sistema Operacional</th><th>Base</th></tr></thead>
+            <tbody>
+              <tr><td>PC do laboratório</td><td>Windows 10/11</td><td>Microsoft</td></tr>
+              <tr><td>Servidores da internet</td><td>Linux (Ubuntu, Debian, etc.)</td><td>Unix / Kernel Linux</td></tr>
+              <tr><td>Mac</td><td>macOS</td><td>Unix / Darwin</td></tr>
+              <tr><td>Celular Android</td><td>Android</td><td>Linux</td></tr>
+              <tr><td>iPhone / iPad</td><td>iOS / iPadOS</td><td>Unix / Darwin</td></tr>
+              <tr><td>Smart TV</td><td>Tizen, webOS, Android TV</td><td>Linux</td></tr>
+              <tr><td>PlayStation 5</td><td>Orbis OS</td><td>FreeBSD (Unix)</td></tr>
+              <tr><td>Roteador Wi-Fi</td><td>Firmware baseado em Linux</td><td>Linux</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Componentes de um S.O.</h2>
+          <ul>
+            <li><strong>Kernel (núcleo)</strong>: parte central, roda em modo privilegiado e fala com o hardware.</li>
+            <li><strong>Shell / Interface</strong>: como você conversa com o S.O. (terminal ou interface gráfica).</li>
+            <li><strong>Drivers</strong>: traduzem comandos do S.O. para cada hardware específico.</li>
+            <li><strong>Utilitários</strong>: ferramentas como o Gerenciador de Tarefas, o Explorador de Arquivos, etc.</li>
+          </ul>
+
+          <div class="callout">
+            <strong>Modo usuário x modo kernel:</strong>
+            Programas comuns rodam em <em>modo usuário</em> (restrito). Quando precisam acessar o hardware,
+            pedem ajuda ao kernel através de uma <em>system call</em> (chamada de sistema).
+          </div>
+
+          <h2>Um dia na vida do S.O.</h2>
+          <ol>
+            <li>Você liga o PC. O <strong>BIOS/UEFI</strong> carrega o kernel na RAM.</li>
+            <li>O kernel inicializa drivers, monta o sistema de arquivos e sobe o <strong>login</strong>.</li>
+            <li>Você entra, abre o Chrome. O S.O. cria um <em>processo</em> e reserva memória.</li>
+            <li>Você digita uma URL. O S.O. pede ao driver de rede para enviar os pacotes.</li>
+            <li>Você abre o Spotify. O S.O. alterna rapidamente entre Chrome e Spotify (escalonamento).</li>
+            <li>Ao desligar, o kernel salva estado, fecha processos e desliga o hardware com segurança.</li>
+          </ol>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q: "Qual a principal função de um sistema operacional?",
+        options: [
+          "Criar sites e aplicativos.",
+          "Gerenciar hardware e oferecer serviços aos programas.",
+          "Acessar a internet mais rápido.",
+          "Proteger o computador de raios e poeira."
+        ],
+        correct: 1,
+        explain: "O S.O. fica entre o hardware e os aplicativos, controlando recursos e oferecendo uma interface de programação."
+      },
+      { q: "Qual dessas partes é o núcleo do sistema operacional?",
+        options: ["Shell", "Driver", "Kernel", "Aplicativo"],
+        correct: 2,
+        explain: "O kernel é o núcleo do S.O., roda em modo privilegiado e controla o hardware."
+      },
+      { q: "O Android é baseado em qual núcleo?",
+        options: ["Windows NT", "Linux", "Darwin (Unix)", "MS-DOS"],
+        correct: 1,
+        explain: "O Android usa o kernel Linux, com bibliotecas e uma camada Java/ART por cima."
+      },
+      { q: "Quando um programa precisa ler um arquivo do disco, ele normalmente:",
+        options: [
+          "Acessa o hardware diretamente.",
+          "Usa uma chamada de sistema (system call) ao kernel.",
+          "Precisa reiniciar o computador.",
+          "Pede permissão ao antivírus."
+        ],
+        correct: 1,
+        explain: "Programas em modo usuário não acessam o hardware diretamente — eles pedem ao kernel via system call."
+      }
+    ], { title: "Fixando a Aula 1" });
+  </script>
+</body>
+</html>

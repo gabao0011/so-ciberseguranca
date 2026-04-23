@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipos de S.O. — Aula 3</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="so" data-page="tipos">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="so.html">Sistemas Operacionais</a><span>›</span> Tipos</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip so">Aula 3 • Sistemas Operacionais</span>
+          <h1>Tipos de Sistemas Operacionais</h1>
+          <p class="lead">
+            Cada aparelho tem necessidades diferentes. Um servidor precisa aguentar milhões
+            de requisições; um marca-passo precisa responder <strong>em tempo certo</strong>.
+            Por isso existem vários tipos de S.O.
+          </p>
+
+          <h2>Por número de usuários</h2>
+          <ul>
+            <li><strong>Monousuário:</strong> um único usuário por vez. Ex.: celulares, MS-DOS antigo.</li>
+            <li><strong>Multiusuário:</strong> vários usuários podem usar simultaneamente (geralmente via rede). Ex.: Linux em servidores.</li>
+          </ul>
+
+          <h2>Por número de tarefas</h2>
+          <ul>
+            <li><strong>Monotarefa:</strong> executa 1 programa por vez (MS-DOS).</li>
+            <li><strong>Multitarefa:</strong> executa vários ao mesmo tempo (Windows, macOS, Linux, Android).</li>
+          </ul>
+
+          <h2>Por tipo de uso</h2>
+          <ul>
+            <li><strong>Desktop:</strong> Windows, macOS, Linux (Ubuntu, Mint).</li>
+            <li><strong>Servidor:</strong> Linux Server, Windows Server. Otimizado para estabilidade e rede.</li>
+            <li><strong>Móvel:</strong> Android, iOS. Foco em bateria e tela de toque.</li>
+            <li><strong>Embarcado:</strong> roda em dispositivos pequenos (smartwatch, geladeira, carro). Ex.: FreeRTOS, Zephyr.</li>
+            <li><strong>Tempo real (RTOS):</strong> precisa responder dentro de um tempo máximo garantido.
+              Ex.: controle de avião, marca-passo, indústria. Erro por atraso = tragédia.</li>
+            <li><strong>Distribuído:</strong> vários computadores cooperam parecendo um só (Google, AWS).</li>
+          </ul>
+
+          <div class="callout warn">
+            <strong>Atenção!</strong> Um S.O. "normal" (como o Windows) <em>não é</em> tempo real.
+            Ele tenta ser rápido, mas não <em>garante</em> um tempo máximo. Por isso aviões não rodam Windows.
+          </div>
+
+          <h2>Comparativo rápido</h2>
+          <table>
+            <thead><tr><th>Tipo</th><th>Exemplo</th><th>Foco principal</th></tr></thead>
+            <tbody>
+              <tr><td>Desktop</td><td>Windows 11</td><td>Interface amigável</td></tr>
+              <tr><td>Servidor</td><td>Ubuntu Server</td><td>Estabilidade, rede</td></tr>
+              <tr><td>Móvel</td><td>Android</td><td>Bateria, toque</td></tr>
+              <tr><td>Embarcado</td><td>FreeRTOS</td><td>Leveza, custo baixo</td></tr>
+              <tr><td>Tempo real</td><td>VxWorks</td><td>Previsibilidade</td></tr>
+              <tr><td>Distribuído</td><td>Google internal</td><td>Escala massiva</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q: "Qual S.O. é mais adequado para um marca-passo?",
+        options: ["Windows 11", "macOS", "RTOS (tempo real)", "Android"], correct: 2,
+        explain: "Marca-passos exigem resposta em tempo garantido — uso clássico de RTOS."
+      },
+      { q: "Um S.O. multiusuário permite que:",
+        options: [
+          "Várias pessoas usem o mesmo computador ao mesmo tempo.",
+          "Um usuário abra vários programas.",
+          "Dois PCs sejam ligados com o mesmo cabo.",
+          "O sistema troque de idioma sozinho."
+        ], correct: 0,
+        explain: "Multiusuário = vários usuários simultaneamente (geralmente via rede, como em servidores Linux)."
+      },
+      { q: "Android é um S.O. de qual categoria principal?",
+        options: ["Desktop", "Servidor", "Móvel", "Tempo real"], correct: 2,
+        explain: "Android foi desenhado para smartphones e tablets (uso móvel)."
+      }
+    ], { title: "Fixando a Aula 3" });
+  </script>
+</body>
+</html>

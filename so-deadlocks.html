@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deadlocks e concorrência — Aula 8</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="so" data-page="deadlocks">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="so.html">Sistemas Operacionais</a><span>›</span> Deadlocks</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip so">Aula 8 • Sistemas Operacionais</span>
+          <h1>Deadlocks e concorrência</h1>
+          <p class="lead">
+            Quando vários processos precisam dos mesmos recursos, pode acontecer de
+            <strong>todos ficarem esperando para sempre</strong>. Isso é um deadlock —
+            um dos bugs mais clássicos dos sistemas operacionais.
+          </p>
+
+          <h2>Uma analogia</h2>
+          <p>
+            Duas pessoas precisam de faca e garfo pra comer. Ana pega a faca, João pega o garfo.
+            Ana espera o garfo. João espera a faca. Ninguém come, ninguém larga. <strong>Deadlock.</strong>
+          </p>
+
+          <h2>As 4 condições necessárias</h2>
+          <p>Um deadlock só acontece se <em>todas</em> estas condições forem verdadeiras ao mesmo tempo:</p>
+          <ol>
+            <li><strong>Exclusão mútua:</strong> o recurso só pode ser usado por um processo por vez.</li>
+            <li><strong>Posse e espera:</strong> o processo segura um recurso e espera por outro.</li>
+            <li><strong>Sem preempção:</strong> o S.O. não pode tirar o recurso à força.</li>
+            <li><strong>Espera circular:</strong> há um ciclo de processos esperando uns aos outros.</li>
+          </ol>
+
+          <div class="callout info">
+            <strong>Quebre uma, resolveu.</strong>
+            Se você eliminar qualquer uma dessas condições, não há deadlock.
+          </div>
+
+          <h2>Estratégias</h2>
+          <ul>
+            <li><strong>Prevenção:</strong> projetar o sistema para evitar uma das 4 condições.</li>
+            <li><strong>Evitar (Banker's algorithm):</strong> só concede recurso se o sistema continua seguro.</li>
+            <li><strong>Detectar e tratar:</strong> deixa acontecer, depois detecta (grafo de espera) e mata um processo.</li>
+            <li><strong>Ignorar (política do avestruz):</strong> em sistemas simples, é comum. Sim, existe 😅.</li>
+          </ul>
+
+          <h2>Concorrência: dando sorte de errar</h2>
+          <p>
+            Quando várias threads tocam no mesmo dado, o resultado pode depender da <strong>ordem</strong> de execução.
+            É a <strong>condição de corrida (race condition)</strong>.
+          </p>
+<pre><code>// Errado: duas threads somando no mesmo contador
+contador = contador + 1;
+// Entre ler e gravar, a outra thread pode sobrescrever.</code></pre>
+          <p>A solução clássica é usar <strong>exclusão mútua</strong> com <em>semáforos</em>,
+          <em>mutex</em> ou <em>locks</em>.</p>
+
+          <h2>Exemplo — jantar dos filósofos</h2>
+          <p>
+            Cinco filósofos, cinco garfos. Cada filósofo precisa de 2 garfos pra comer.
+            Se todos pegarem o garfo da esquerda ao mesmo tempo, ninguém come — deadlock.
+            É um problema clássico usado para estudar sincronização.
+          </p>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q: "Qual das opções NÃO é uma das 4 condições para deadlock?",
+        options: ["Exclusão mútua", "Espera circular", "Uso de memória virtual", "Posse e espera"], correct: 2,
+        explain: "Memória virtual não é condição de deadlock. As 4 são: exclusão mútua, posse e espera, sem preempção, espera circular."
+      },
+      { q: "Race condition acontece quando:",
+        options: [
+          "Um processo roda muito rápido.",
+          "Duas threads acessam o mesmo dado sem sincronização, e o resultado depende da ordem.",
+          "O sistema fica sem memória.",
+          "O processador aquece demais."
+        ], correct: 1,
+        explain: "Race condition = resultado depende de quem chega primeiro na memória compartilhada."
+      },
+      { q: "Para evitar race conditions usamos:",
+        options: ["Mutex / locks / semáforos", "Mais RAM", "Antivírus", "Cache maior"], correct: 0,
+        explain: "Primitivas de sincronização garantem acesso exclusivo à região crítica."
+      }
+    ], { title: "Fixando a Aula 8" });
+  </script>
+</body>
+</html>

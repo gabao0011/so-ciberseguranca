@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerência de memória — Aula 6</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="so" data-page="memoria">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="so.html">Sistemas Operacionais</a><span>›</span> Memória</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip so">Aula 6 • Sistemas Operacionais</span>
+          <h1>Gerência de memória</h1>
+          <p class="lead">
+            Todo programa precisa de espaço na <strong>memória RAM</strong> pra rodar. O S.O. é
+            quem <em>divide</em> a RAM entre os processos, <em>protege</em> um do outro e ainda dá
+            a ilusão de que cada um tem mais memória do que realmente existe.
+          </p>
+
+          <h2>Hierarquia de memória</h2>
+          <p>Do mais rápido e caro pro mais lento e barato:</p>
+          <ol>
+            <li><strong>Registradores</strong> (dentro da CPU) — nanosegundos.</li>
+            <li><strong>Cache L1, L2, L3</strong> — poucos MB, extremamente rápidos.</li>
+            <li><strong>RAM</strong> — vários GB, rápida.</li>
+            <li><strong>SSD / HD</strong> — centenas de GB, milhares de vezes mais lento.</li>
+            <li><strong>Fita / Cloud</strong> — capacidade enorme, acesso lento.</li>
+          </ol>
+
+          <h2>Endereços lógicos e físicos</h2>
+          <ul>
+            <li><strong>Endereço lógico / virtual:</strong> o que o programa vê. Cada processo acha que tem memória só pra ele, começando em 0.</li>
+            <li><strong>Endereço físico:</strong> posição real na RAM.</li>
+            <li><strong>MMU (Memory Management Unit):</strong> hardware que traduz endereço lógico em físico.</li>
+          </ul>
+
+          <div class="callout info">
+            <strong>Por que existe memória virtual?</strong>
+            Pra (1) dar a ilusão de mais memória do que há, (2) proteger um processo do outro,
+            (3) simplificar a programação (cada processo usa endereços próprios).
+          </div>
+
+          <h2>Paginação</h2>
+          <p>
+            A memória é dividida em <strong>páginas</strong> de tamanho fixo (ex.: 4 KB).
+            Quando o processo acessa uma página que não está na RAM, ocorre um <strong>page fault</strong>
+            e o S.O. traz a página do disco.
+          </p>
+          <ul>
+            <li><strong>Hit:</strong> a página já estava na RAM.</li>
+            <li><strong>Miss (page fault):</strong> precisou buscar no disco. Muito mais lento.</li>
+          </ul>
+
+          <h2>Políticas de substituição</h2>
+          <p>Quando a RAM enche e precisa tirar uma página pra colocar outra:</p>
+          <ul>
+            <li><strong>FIFO (First-In First-Out):</strong> tira a mais antiga. Simples, mas nem sempre boa.</li>
+            <li><strong>LRU (Least Recently Used):</strong> tira a que não é usada há mais tempo. Costuma ser a melhor.</li>
+            <li><strong>Ótima (teórica):</strong> tira a que só será usada bem no futuro. Impossível na prática, mas serve de comparação.</li>
+          </ul>
+
+          <div class="callout warn">
+            <strong>Thrashing:</strong>
+            quando os processos pedem muita memória e o sistema passa mais tempo trocando páginas do que executando.
+            O PC fica lentíssimo — "travado no disco".
+          </div>
+
+          <h2>Swap / memória virtual no disco</h2>
+          <p>
+            Para estender a RAM, o S.O. usa uma área no disco chamada <strong>swap</strong> (Linux)
+            ou <strong>arquivo de paginação</strong> (Windows). É bem mais lento, mas evita ficar sem memória.
+          </p>
+
+          <h2>Simulador — FIFO x LRU</h2>
+          <p>Defina a sequência de páginas e o número de quadros. Veja os <em>hits</em> e <em>misses</em>.</p>
+          <div class="game" id="pgGame"></div>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/games/paging.js"></script>
+  <script>
+    PagingGame.mount(document.getElementById("pgGame"));
+    Quiz.render(document.getElementById("quiz"), [
+      { q: "O que é um page fault?",
+        options: [
+          "Erro fatal que desliga o PC.",
+          "A página acessada não está na RAM; o S.O. precisa buscá-la.",
+          "Página corrompida no disco.",
+          "Quando a CPU perde um dado."
+        ], correct: 1,
+        explain: "Page fault = miss. A página acessada precisa ser trazida do disco."
+      },
+      { q: "Qual política costuma ter melhor desempenho na prática?",
+        options: ["FIFO", "LRU", "LIFO", "Aleatória"], correct: 1,
+        explain: "LRU explora o princípio da localidade temporal: o que foi usado tende a ser usado de novo."
+      },
+      { q: "Por que usamos memória virtual?",
+        options: [
+          "Para dar ilusão de mais memória, proteger processos e simplificar o endereçamento.",
+          "Para o HD durar mais.",
+          "Para rodar programas antigos.",
+          "Para salvar cookies do navegador."
+        ], correct: 0,
+        explain: "Memória virtual oferece isolamento, ilusão de espaço grande e facilita a programação."
+      }
+    ], { title: "Fixando a Aula 6" });
+  </script>
+</body>
+</html>

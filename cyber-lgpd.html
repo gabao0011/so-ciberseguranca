@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacidade e LGPD — Aula 10</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="cyber" data-page="lgpd">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="cyber.html">Cibersegurança</a><span>›</span> LGPD</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip cyber">Aula 10 • Cibersegurança</span>
+          <h1>Privacidade e LGPD</h1>
+          <p class="lead">
+            Seus dados valem dinheiro. A Lei Geral de Proteção de Dados (LGPD, Lei 13.709/2018)
+            coloca regras sobre o que empresas e governos podem fazer com eles.
+          </p>
+
+          <h2>O que são dados pessoais?</h2>
+          <p>
+            Qualquer informação que identifique (ou possa identificar) uma pessoa.
+            Nome, CPF, e-mail, localização, IP, foto, voz, preferências.
+          </p>
+          <p>
+            Dados <strong>sensíveis</strong> têm proteção extra: origem racial, religião, saúde,
+            orientação sexual, biometria, dados de menores.
+          </p>
+
+          <h2>Seus direitos (em qualquer site BR)</h2>
+          <ul>
+            <li>Saber <strong>quais dados</strong> a empresa tem sobre você.</li>
+            <li><strong>Corrigir</strong> dados errados.</li>
+            <li>Pedir <strong>exclusão</strong> ou <strong>anonimização</strong>.</li>
+            <li>Portabilidade: levar seus dados para outro serviço.</li>
+            <li><strong>Revogar consentimento</strong> a qualquer momento.</li>
+          </ul>
+
+          <h2>Quem faz cumprir?</h2>
+          <p>A <strong>ANPD</strong> (Autoridade Nacional de Proteção de Dados) fiscaliza e aplica multas
+          que podem chegar a 2% do faturamento (até R$ 50 milhões por infração).</p>
+
+          <h2>Pegadinhas comuns dos apps</h2>
+          <ul>
+            <li><strong>Dark patterns</strong>: "aceitar tudo" em letra enorme e "rejeitar" escondido.</li>
+            <li><strong>Permissões excessivas</strong> no celular.</li>
+            <li><strong>Vender dados</strong> para terceiros sem consentimento claro.</li>
+          </ul>
+
+          <h2>Como cuidar da sua privacidade</h2>
+          <ul>
+            <li>Leia pelo menos o <em>resumo</em> das políticas de privacidade (apps geralmente trazem um).</li>
+            <li>Use e-mails descartáveis ou "e-mail + tag" para cadastros de baixa confiança.</li>
+            <li>Desative localização precisa quando não precisar.</li>
+            <li>Revise periodicamente apps conectados às suas contas do Google/Apple.</li>
+            <li>Evite compartilhar documentos em grupos públicos.</li>
+          </ul>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q:"Qual desses é dado sensível pela LGPD?",
+        options:["Nome","Religião","Endereço","Cor do cabelo"], correct:1,
+        explain:"Religião, saúde, origem racial, biometria e dados de menores têm proteção especial." },
+      { q:"A ANPD é responsável por:",
+        options:["Distribuir internet","Fiscalizar a LGPD no Brasil","Vender dados","Criar senhas"], correct:1,
+        explain:"Autoridade Nacional de Proteção de Dados." },
+      { q:"A LGPD permite que você:",
+        options:[
+          "Peça a exclusão dos seus dados",
+          "Evite pagar impostos",
+          "Use qualquer foto da internet",
+          "Instale qualquer app sem aviso"
+        ], correct:0, explain:"Direito ao esquecimento / exclusão / anonimização é garantido." }
+    ], { title:"Fixando a Aula 10" });
+  </script>
+</body></html>

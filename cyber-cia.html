@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tríade CIA e princípios — Aula 2</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="cyber" data-page="cia">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="cyber.html">Cibersegurança</a><span>›</span> CIA</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip cyber">Aula 2 • Cibersegurança</span>
+          <h1>Tríade CIA e princípios fundamentais</h1>
+          <p class="lead">
+            Na cibersegurança, três letras resumem quase tudo: <strong>C.I.A.</strong> —
+            <strong>C</strong>onfidencialidade, <strong>I</strong>ntegridade e <strong>D</strong>isponibilidade
+            (em inglês <em>Availability</em>).
+          </p>
+
+          <h2>Confidencialidade</h2>
+          <p>Só quem tem permissão pode ver a informação.</p>
+          <ul>
+            <li>Mecanismos: senha, criptografia, permissões de arquivo, VPN.</li>
+            <li>Exemplo de falha: um banco expõe o extrato de outro cliente.</li>
+          </ul>
+
+          <h2>Integridade</h2>
+          <p>A informação não foi alterada por quem não deveria.</p>
+          <ul>
+            <li>Mecanismos: hash (SHA-256), assinaturas digitais, controle de versão.</li>
+            <li>Exemplo de falha: alguém altera uma nota escolar no sistema.</li>
+          </ul>
+
+          <h2>Disponibilidade</h2>
+          <p>A informação está acessível quando você precisa.</p>
+          <ul>
+            <li>Mecanismos: redundância, backups, proteção contra DDoS, monitoramento.</li>
+            <li>Exemplo de falha: site do enem cai na hora da inscrição.</li>
+          </ul>
+
+          <div class="callout">
+            <strong>As três se equilibram.</strong>
+            Deixar um arquivo criptografado no cofre melhora a confidencialidade,
+            mas pode prejudicar disponibilidade se você esquecer a senha.
+          </div>
+
+          <h2>Princípios complementares</h2>
+          <ul>
+            <li><strong>Autenticação:</strong> provar quem é você (senha, biometria).</li>
+            <li><strong>Autorização:</strong> o que você pode fazer depois de autenticado.</li>
+            <li><strong>Não-repúdio:</strong> impedir que alguém negue ter feito uma ação (assinatura digital).</li>
+            <li><strong>Privacidade:</strong> controle do indivíduo sobre seus próprios dados.</li>
+            <li><strong>Menor privilégio:</strong> cada pessoa/programa só tem o acesso mínimo necessário.</li>
+            <li><strong>Defesa em profundidade:</strong> várias camadas de proteção (firewall + antivírus + 2FA + backup).</li>
+          </ul>
+
+          <h2>Exemplo do dia a dia</h2>
+          <p>Quando você entra no WhatsApp:</p>
+          <ul>
+            <li><strong>Autenticação:</strong> código SMS.</li>
+            <li><strong>Confidencialidade:</strong> criptografia de ponta a ponta.</li>
+            <li><strong>Integridade:</strong> a mensagem chega igual foi enviada.</li>
+            <li><strong>Disponibilidade:</strong> o WhatsApp (quase sempre) está no ar.</li>
+          </ul>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q:"Alguém alterou uma nota no sistema. Qual pilar da CIA foi violado?",
+        options:["Confidencialidade","Integridade","Disponibilidade","Autenticação"], correct:1,
+        explain:"Integridade: o dado foi modificado por quem não deveria."},
+      { q:"Um ataque DDoS deixa o site fora do ar. Qual pilar sofreu?",
+        options:["Confidencialidade","Integridade","Disponibilidade","Não-repúdio"], correct:2,
+        explain:"DDoS mira a Disponibilidade — o serviço fica inacessível."},
+      { q:"Princípio do menor privilégio significa:",
+        options:[
+          "Ter a maior senha possível",
+          "Cada pessoa/programa só tem o acesso estritamente necessário",
+          "Dar poderes de admin a todo mundo para agilizar",
+          "Bloquear a internet"
+        ], correct:1, explain:"Limita estragos em caso de erro ou invasão."}
+    ], { title:"Fixando a Aula 2" });
+  </script>
+</body></html>

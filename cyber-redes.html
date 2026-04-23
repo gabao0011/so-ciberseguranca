@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redes e firewall — Aula 8</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="cyber" data-page="redes">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="cyber.html">Cibersegurança</a><span>›</span> Redes</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip cyber">Aula 8 • Cibersegurança</span>
+          <h1>Redes e firewall</h1>
+          <p class="lead">Tudo que você faz online passa por uma rede. Entender como ela funciona ajuda a escolher o que é seguro e o que é armadilha.</p>
+
+          <h2>IP, porta e protocolo</h2>
+          <ul>
+            <li><strong>IP:</strong> endereço único do dispositivo na rede (ex.: 192.168.0.5).</li>
+            <li><strong>Porta:</strong> "canal" lógico dentro do IP (ex.: 443 = HTTPS).</li>
+            <li><strong>Protocolo:</strong> "idioma" usado (HTTP, HTTPS, SSH, FTP, SMTP).</li>
+          </ul>
+
+          <h2>Firewall</h2>
+          <p>
+            É o "porteiro" da rede. Decide que pacotes entram e saem com base em regras
+            (IP de origem/destino, porta, protocolo). Existe no roteador, no sistema operacional
+            e em empresas (firewall corporativo).
+          </p>
+
+          <h2>VPN</h2>
+          <p>
+            Cria um <strong>túnel criptografado</strong> entre seu dispositivo e um servidor.
+            Qualquer um no meio (Wi-Fi do café, ISP) vê só dados embaralhados.
+            Usos comuns: trabalho remoto, privacidade, contornar bloqueios.
+          </p>
+
+          <div class="callout info">
+            <strong>VPN não é anonimato total.</strong>
+            O provedor da VPN enxerga seu tráfego. Escolha um confiável.
+          </div>
+
+          <h2>Wi-Fi público</h2>
+          <ul>
+            <li>Evite acessar banco/e-mail em Wi-Fi aberto sem VPN.</li>
+            <li>Não confie em SSIDs parecidos (atacantes criam redes "Free_Shopping").</li>
+            <li>Prefira HTTPS sempre (hoje é quase universal).</li>
+          </ul>
+
+          <h2>Protocolos — inseguros x seguros</h2>
+          <table>
+            <thead><tr><th>Inseguro</th><th>Seguro</th><th>Para quê</th></tr></thead>
+            <tbody>
+              <tr><td>HTTP (80)</td><td>HTTPS (443)</td><td>Sites</td></tr>
+              <tr><td>FTP (21)</td><td>SFTP (22) / FTPS</td><td>Transferência de arquivos</td></tr>
+              <tr><td>Telnet (23)</td><td>SSH (22)</td><td>Acesso remoto</td></tr>
+              <tr><td>POP3/IMAP/SMTP</td><td>POP3S/IMAPS/SMTPS</td><td>E-mail</td></tr>
+              <tr><td>DNS (53)</td><td>DoH / DoT</td><td>Resolver nomes</td></tr>
+            </tbody>
+          </table>
+
+          <h2>IDS e IPS</h2>
+          <ul>
+            <li><strong>IDS</strong> (Intrusion Detection System): detecta ataques e alerta.</li>
+            <li><strong>IPS</strong> (Intrusion Prevention System): detecta e <em>bloqueia</em>.</li>
+          </ul>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q:"A porta 443 é associada a:", options:["HTTP","HTTPS","SSH","FTP"], correct:1, explain:"443 = HTTPS (criptografado)." },
+      { q:"Uma VPN serve principalmente para:",
+        options:["Acelerar a internet","Criar um túnel criptografado entre cliente e servidor","Aumentar a bateria","Virar admin"], correct:1,
+        explain:"VPN cifra e direciona o tráfego por um servidor remoto." },
+      { q:"Qual substitui com segurança o Telnet?",
+        options:["SFTP","SSH","HTTPS","DoH"], correct:1, explain:"SSH é o sucessor seguro do Telnet." }
+    ], { title:"Fixando a Aula 8" });
+  </script>
+</body></html>

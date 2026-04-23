@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Processos e Threads — Aula 4</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="so" data-page="processos">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="so.html">Sistemas Operacionais</a><span>›</span> Processos e Threads</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip so">Aula 4 • Sistemas Operacionais</span>
+          <h1>Processos e Threads</h1>
+          <p class="lead">
+            Quando você clica no ícone do Chrome, o S.O. cria um <strong>processo</strong>.
+            Ele é uma "cópia do programa rodando", com sua própria memória, variáveis e estado.
+            Dentro dele, várias <strong>threads</strong> podem executar em paralelo.
+          </p>
+
+          <h2>O que é um processo?</h2>
+          <p>Um processo é um programa <em>em execução</em>. Ele tem:</p>
+          <ul>
+            <li><strong>Código</strong> (as instruções).</li>
+            <li><strong>Dados</strong> (variáveis globais).</li>
+            <li><strong>Pilha (stack)</strong> e <strong>heap</strong> (áreas de memória).</li>
+            <li><strong>PID</strong> — identificador único (número).</li>
+            <li><strong>PCB (Process Control Block)</strong> — estrutura do kernel com estado, registradores, prioridade, etc.</li>
+          </ul>
+
+          <div class="callout info">
+            <strong>Programa ≠ Processo.</strong>
+            Um programa é o arquivo no disco (ex.: <code>chrome.exe</code>). Um processo é uma execução dele
+            na memória. Você pode ter <em>vários processos</em> do mesmo programa rodando (várias abas, várias janelas).
+          </div>
+
+          <h2>Estados de um processo</h2>
+          <table>
+            <thead><tr><th>Estado</th><th>O que significa</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Novo</strong></td><td>Acabou de ser criado, sendo inicializado.</td></tr>
+              <tr><td><strong>Pronto</strong></td><td>Esperando a CPU liberar. Já tem tudo pra rodar.</td></tr>
+              <tr><td><strong>Executando</strong></td><td>Está na CPU agora, executando instruções.</td></tr>
+              <tr><td><strong>Bloqueado / Esperando</strong></td><td>Parou para esperar algo (disco, rede, teclado).</td></tr>
+              <tr><td><strong>Terminado</strong></td><td>Finalizou sua execução.</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Transições típicas</h2>
+          <ul>
+            <li><strong>Pronto → Executando:</strong> escalonador escolheu este processo.</li>
+            <li><strong>Executando → Bloqueado:</strong> pediu algo (ler arquivo) e está esperando.</li>
+            <li><strong>Bloqueado → Pronto:</strong> o que esperava chegou (ex.: dado do disco).</li>
+            <li><strong>Executando → Pronto:</strong> S.O. cortou o tempo dele (preempção).</li>
+          </ul>
+
+          <h2>Threads (linhas de execução)</h2>
+          <p>
+            Uma thread é um "fluxo de execução" dentro de um processo. Um processo pode ter
+            várias threads rodando em paralelo, <strong>compartilhando memória</strong>.
+          </p>
+          <ul>
+            <li><strong>Vantagens:</strong> mais rápido criar uma thread do que um processo; compartilham dados facilmente.</li>
+            <li><strong>Cuidado:</strong> como compartilham memória, podem se atrapalhar (condição de corrida).</li>
+          </ul>
+
+          <div class="callout">
+            <strong>Exemplo:</strong>
+            Um navegador moderno costuma ter <em>um processo por aba</em> (isolamento + segurança),
+            e cada aba tem <em>várias threads</em> — uma para render, uma para JavaScript, uma para rede, etc.
+          </div>
+
+          <h2>Concorrência x Paralelismo</h2>
+          <ul>
+            <li><strong>Concorrência:</strong> parece que várias coisas acontecem ao mesmo tempo (o S.O. alterna rápido).</li>
+            <li><strong>Paralelismo:</strong> várias coisas acontecem <em>de verdade</em> ao mesmo tempo (precisa de mais de um núcleo).</li>
+          </ul>
+
+          <h2>Comandos úteis</h2>
+          <ul>
+            <li><strong>Windows:</strong> Gerenciador de Tarefas (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Esc</kbd>).</li>
+            <li><strong>Linux:</strong> <code>ps aux</code>, <code>top</code>, <code>htop</code>.</li>
+            <li><strong>macOS:</strong> Monitor de Atividade.</li>
+          </ul>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q: "Qual a diferença entre programa e processo?",
+        options: [
+          "Nenhuma, são sinônimos.",
+          "Programa é o arquivo no disco; processo é a execução dele na memória.",
+          "Processo é só em Linux; programa é no Windows.",
+          "Processo é para jogos; programa para apps comuns."
+        ], correct: 1,
+        explain: "Programa é estático (arquivo). Processo é dinâmico (em execução)."
+      },
+      { q: "Qual característica é verdadeira sobre threads?",
+        options: [
+          "Cada thread tem sua própria memória isolada.",
+          "Threads são mais pesadas que processos.",
+          "Threads de um mesmo processo compartilham memória.",
+          "Só existe uma thread por sistema."
+        ], correct: 2,
+        explain: "Threads compartilham memória do processo — por isso são leves, mas exigem cuidado com concorrência."
+      },
+      { q: "Um processo está no estado 'bloqueado' quando:",
+        options: [
+          "Está executando na CPU.",
+          "Travou e não pode mais rodar nunca.",
+          "Está esperando algo (I/O, rede, etc.).",
+          "Está na fila pronto para rodar."
+        ], correct: 2,
+        explain: "Bloqueado = esperando por um evento externo (disco, rede, input)."
+      },
+      { q: "Paralelismo real só é possível quando o computador tem:",
+        options: [
+          "Mais de um monitor.",
+          "Mais memória RAM.",
+          "Mais de um núcleo (core) de CPU.",
+          "Conexão com internet."
+        ], correct: 2,
+        explain: "Para executar duas instruções de verdade simultaneamente é preciso mais de um núcleo."
+      }
+    ], { title: "Fixando a Aula 4" });
+  </script>
+</body>
+</html>

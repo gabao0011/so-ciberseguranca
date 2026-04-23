@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>História e evolução dos S.O. — Aula 2</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="so" data-page="historia">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="so.html">Sistemas Operacionais</a><span>›</span> História</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip so">Aula 2 • Sistemas Operacionais</span>
+          <h1>História e evolução dos S.O.</h1>
+          <p class="lead">
+            Os sistemas operacionais não apareceram prontos. Eles foram criados aos poucos
+            para resolver problemas reais: economizar tempo, aproveitar melhor o hardware
+            e permitir que várias pessoas usem o mesmo computador.
+          </p>
+
+          <h2>Linha do tempo resumida</h2>
+          <table>
+            <thead><tr><th>Época</th><th>Geração</th><th>O que mudou</th></tr></thead>
+            <tbody>
+              <tr><td>1945–1955</td><td>1ª — Válvulas</td><td>Sem S.O. Programadores marcavam hora na máquina e carregavam programas manualmente.</td></tr>
+              <tr><td>1955–1965</td><td>2ª — Transistores</td><td>Processamento em <strong>lote (batch)</strong>: operador enfileirava cartões perfurados.</td></tr>
+              <tr><td>1965–1980</td><td>3ª — Circuitos integrados</td><td><strong>Multiprogramação</strong> e <strong>tempo compartilhado</strong> (UNIX, 1969).</td></tr>
+              <tr><td>1980–1990</td><td>4ª — Microcomputador</td><td>PC popular. MS-DOS, Mac OS, Windows 1.0. GUI chega ao usuário comum.</td></tr>
+              <tr><td>1990–2005</td><td>Rede &amp; Multimídia</td><td>Windows 95/XP, Linux, Mac OS X. Internet em casa, jogos 3D.</td></tr>
+              <tr><td>2005–hoje</td><td>Móvel &amp; Nuvem</td><td>Android, iOS. Virtualização, Docker, Kubernetes, computação em nuvem.</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Marcos importantes</h2>
+          <ul>
+            <li><strong>UNIX (1969)</strong> — Ken Thompson e Dennis Ritchie, na Bell Labs. Até hoje é a base do macOS, iOS, Android e Linux.</li>
+            <li><strong>MS-DOS (1981)</strong> — sistema em linha de comando que acompanhou os primeiros PCs da IBM.</li>
+            <li><strong>Mac OS (1984)</strong> — primeiro S.O. popular com <em>mouse</em> e janelas para o grande público.</li>
+            <li><strong>Windows 95 (1995)</strong> — popularizou o menu Iniciar, a barra de tarefas e o "plug and play".</li>
+            <li><strong>Linux (1991)</strong> — Linus Torvalds escreve o kernel e libera sob licença livre. Hoje roda a maior parte da internet.</li>
+            <li><strong>iOS (2007) e Android (2008)</strong> — sistemas operacionais pensados pro celular e pro toque.</li>
+          </ul>
+
+          <div class="callout">
+            <strong>Curiosidade:</strong> o primeiro "bug" documentado foi literalmente um inseto —
+            uma mariposa presa em um relê do computador Mark II em 1947. Daí vem o termo "debug".
+          </div>
+
+          <h2>Software livre x proprietário</h2>
+          <p>
+            Existem dois grandes modelos de S.O.:
+          </p>
+          <ul>
+            <li><strong>Proprietários:</strong> Windows, macOS, iOS — o código fonte é secreto e o uso é pago/licenciado.</li>
+            <li><strong>Livres / código aberto:</strong> Linux, FreeBSD, Android (AOSP) — qualquer pessoa pode ver, modificar e distribuir o código.</li>
+          </ul>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q: "Qual sistema serviu de base para macOS, iOS, Android e Linux?",
+        options: ["MS-DOS", "Windows NT", "UNIX", "CP/M"], correct: 2,
+        explain: "UNIX (1969) inspirou toda uma família de sistemas modernos."
+      },
+      { q: "O Linux foi criado por...",
+        options: ["Bill Gates", "Steve Jobs", "Linus Torvalds", "Dennis Ritchie"], correct: 2,
+        explain: "Linus Torvalds começou o kernel Linux em 1991 quando era estudante universitário."
+      },
+      { q: "Em qual geração surgiu o tempo compartilhado (time-sharing)?",
+        options: ["1ª", "2ª", "3ª", "4ª"], correct: 2,
+        explain: "A 3ª geração trouxe multiprogramação e tempo compartilhado, permitindo vários usuários simultâneos."
+      }
+    ], { title: "Fixando a Aula 2" });
+  </script>
+</body>
+</html>

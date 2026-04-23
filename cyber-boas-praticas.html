@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boas práticas e hábitos — Aula 11</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="cyber" data-page="boas-praticas">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="cyber.html">Cibersegurança</a><span>›</span> Boas práticas</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip cyber">Aula 11 • Cibersegurança</span>
+          <h1>Boas práticas e hábitos</h1>
+          <p class="lead">
+            Segurança não é um produto, é um <strong>hábito diário</strong>.
+            Estes são os comportamentos que reduzem em 99% a chance de dar ruim.
+          </p>
+
+          <h2>Seu kit de sobrevivência digital</h2>
+          <div class="grid-2">
+            <div class="callout ok"><strong>Atualize tudo.</strong>
+              S.O., navegador, apps. A maioria dos patches corrige falhas sérias.</div>
+            <div class="callout ok"><strong>Use 2FA.</strong>
+              Em banco, e-mail, Instagram, jogos, Discord. Qualquer conta importante.</div>
+            <div class="callout ok"><strong>Gerenciador de senhas.</strong>
+              Senhas únicas, longas, e você lembra só a mestra.</div>
+            <div class="callout ok"><strong>Backup 3-2-1.</strong>
+              3 cópias, 2 mídias diferentes, 1 fora do local (nuvem).</div>
+            <div class="callout ok"><strong>Bloqueio de tela.</strong>
+              Celular e notebook sempre com PIN/biometria. Tela automática.</div>
+            <div class="callout ok"><strong>Criptografia de disco.</strong>
+              BitLocker (Windows Pro), FileVault (macOS), LUKS (Linux). Roubaram o notebook? Seus dados não vazam.</div>
+          </div>
+
+          <h2>Evite essas armadilhas</h2>
+          <ul>
+            <li>Clicar em link do SMS dizendo "seu pacote está retido".</li>
+            <li>Baixar APK fora da Play Store.</li>
+            <li>Aceitar código 2FA que você não pediu.</li>
+            <li>Instalar extensão de navegador desconhecida.</li>
+            <li>Usar a mesma senha em vários sites.</li>
+            <li>Digitar dados do cartão em sites sem cadeado (HTTPS).</li>
+            <li>Deixar dispositivo destravado "só um segundinho".</li>
+          </ul>
+
+          <h2>Descarte seguro</h2>
+          <p>
+            Vai vender o celular antigo? Apague tudo, faça reset de fábrica e, se possível,
+            crie uma conta "falsa" e encha a memória antes de dar novo reset, para sobrescrever os dados.
+            HD/SSD: use ferramentas como <code>shred</code>, DBAN, ou destrua fisicamente.
+          </p>
+
+          <h2>Em caso de incidente</h2>
+          <ol>
+            <li>Desconecte o dispositivo da internet.</li>
+            <li>Troque senhas (de outro aparelho limpo).</li>
+            <li>Avise bancos / e-mail / contatos.</li>
+            <li>Faça <em>boletim de ocorrência online</em> se houver crime.</li>
+            <li>Só depois, limpe o dispositivo (às vezes é útil preservar evidências).</li>
+          </ol>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q:"A regra 3-2-1 de backup sugere:",
+        options:["1 cópia no mesmo PC","3 cópias, 2 mídias, 1 fora do local","3 pendrives iguais","Backup só na internet"], correct:1,
+        explain:"3-2-1 garante redundância mesmo em desastres." },
+      { q:"O que fazer primeiro se seu e-mail foi invadido?",
+        options:["Postar no Instagram pra avisar os amigos","Trocar a senha e ativar 2FA","Desinstalar o navegador","Formatar o celular"], correct:1,
+        explain:"Retome o controle da conta primeiro — senha nova + 2FA." },
+      { q:"Você vendeu o celular antigo. O certo é:",
+        options:["Só apagar as fotos","Fazer reset de fábrica com a conta deslogada","Deixar o WhatsApp logado","Dar o celular com a senha anotada"], correct:1,
+        explain:"Reset de fábrica limpa dados e contas. Confirme que não há sessão logada." }
+    ], { title:"Fixando a Aula 11" });
+  </script>
+</body></html>

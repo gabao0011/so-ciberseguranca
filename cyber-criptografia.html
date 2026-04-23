@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criptografia — Aula 7</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="cyber" data-page="criptografia">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="cyber.html">Cibersegurança</a><span>›</span> Criptografia</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip cyber">Aula 7 • Cibersegurança</span>
+          <h1>Criptografia</h1>
+          <p class="lead">
+            Criptografia é a matemática que <strong>embaralha</strong> dados para que só quem tem a
+            chave consiga ler. Está por trás do HTTPS, do WhatsApp, do Pix e até do login do Google.
+          </p>
+
+          <h2>Termos-chave</h2>
+          <ul>
+            <li><strong>Texto claro:</strong> a mensagem original.</li>
+            <li><strong>Texto cifrado:</strong> a versão embaralhada.</li>
+            <li><strong>Chave:</strong> segredo usado para cifrar e decifrar.</li>
+            <li><strong>Algoritmo:</strong> a "receita" matemática (AES, RSA, etc.).</li>
+          </ul>
+
+          <h2>Simétrica x Assimétrica</h2>
+          <table>
+            <thead><tr><th></th><th>Simétrica</th><th>Assimétrica</th></tr></thead>
+            <tbody>
+              <tr><td>Chaves</td><td>Uma só — mesma pra cifrar e decifrar</td><td>Duas — pública e privada</td></tr>
+              <tr><td>Velocidade</td><td>Rápida</td><td>Mais lenta</td></tr>
+              <tr><td>Problema</td><td>Como trocar a chave com segurança?</td><td>Resolve o problema de troca de chaves</td></tr>
+              <tr><td>Exemplos</td><td>AES, ChaCha20</td><td>RSA, ECC</td></tr>
+            </tbody>
+          </table>
+
+          <p>
+            Na prática, os sistemas misturam as duas: usam assimétrica pra trocar uma chave simétrica
+            segura, e simétrica pra cifrar os dados reais (por ser mais rápida). É assim que o HTTPS funciona.
+          </p>
+
+          <h2>Funções hash</h2>
+          <p>
+            Hash é um "resumo" do conteúdo. Transforma qualquer entrada em uma string fixa.
+            É <strong>irreversível</strong>: não dá pra voltar do hash pro original.
+          </p>
+          <ul>
+            <li>Usado para armazenar senhas (<em>nunca</em> guarde senha em texto claro).</li>
+            <li>Verificar integridade de arquivos (baixou um ISO? Compare o hash).</li>
+            <li>Algoritmos: SHA-256, SHA-3. (MD5 e SHA-1 são <em>antigos e quebrados</em>).</li>
+          </ul>
+
+          <h2>Assinatura digital</h2>
+          <p>
+            Combina hash + criptografia assimétrica pra provar <em>quem</em> assinou e que o
+            conteúdo <em>não foi alterado</em>. É como uma assinatura de papel, só que à prova de falsificação.
+          </p>
+
+          <h2>HTTPS em 3 passos</h2>
+          <ol>
+            <li>Seu navegador recebe o <strong>certificado</strong> do site (com chave pública).</li>
+            <li>Gera uma chave simétrica temporária e envia cifrada com a chave pública.</li>
+            <li>A partir daí, os dois conversam usando criptografia simétrica rápida e segura.</li>
+          </ol>
+
+          <h2>Minigame — Cifra de César</h2>
+          <p>Deslize cada letra N posições no alfabeto. Fácil de entender, péssima pra segurança —
+          mas ótima para aprender o conceito.</p>
+          <div class="game" id="caesarGame"></div>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/games/caesar.js"></script>
+  <script>
+    CaesarGame.mount(document.getElementById("caesarGame"));
+    Quiz.render(document.getElementById("quiz"), [
+      { q:"Na criptografia assimétrica temos:",
+        options:["Só uma chave","Duas chaves (pública e privada)","Três chaves","Nenhuma chave"], correct:1,
+        explain:"Par de chaves: pública para cifrar/verificar, privada para decifrar/assinar."},
+      { q:"Qual propriedade de uma função hash é verdadeira?",
+        options:[
+          "É reversível (dá para voltar ao original)",
+          "Produz saída de tamanho fixo e é irreversível",
+          "Só funciona com texto em português",
+          "Sempre retorna o mesmo valor"
+        ], correct:1, explain:"Hash é irreversível e tem saída de tamanho fixo." },
+      { q:"HTTPS combina:",
+        options:[
+          "Só criptografia simétrica",
+          "Só criptografia assimétrica",
+          "Assimétrica para troca de chave + simétrica para os dados",
+          "Nenhuma criptografia, só compressão"
+        ], correct:2, explain:"Handshake assimétrico + dados simétricos (por velocidade)." }
+    ], { title:"Fixando a Aula 7" });
+  </script>
+</body></html>

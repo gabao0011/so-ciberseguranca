@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glossário — S.O. &amp; Cyber</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-nav="glossario">
+  <main>
+    <div class="container">
+      <div class="section-header">
+        <span class="chip">A–Z</span>
+        <div>
+          <h1>Glossário</h1>
+          <p class="sub">Todos os termos importantes de S.O. e Cibersegurança num só lugar. Use <kbd>Ctrl</kbd>+<kbd>F</kbd> para buscar.</p>
+        </div>
+      </div>
+
+      <input type="text" id="search" placeholder="🔍 Filtrar termos..." style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background: var(--bg-elev); color:var(--text); margin-bottom:20px; font-family:inherit; font-size:1rem;">
+
+      <div id="glossary"></div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script>
+    const terms = [
+      ["2FA","Autenticação em dois fatores."],
+      ["Adware","Software que exibe propaganda intrusiva."],
+      ["Aging (envelhecimento)","Técnica que aumenta a prioridade de processos antigos para evitar starvation."],
+      ["Algoritmo","Sequência finita de passos para resolver um problema."],
+      ["ANPD","Autoridade Nacional de Proteção de Dados (Brasil)."],
+      ["APT","Advanced Persistent Threat — grupo organizado, muitas vezes estatal."],
+      ["AES","Algoritmo de criptografia simétrica padrão atual."],
+      ["Backup","Cópia de segurança de dados."],
+      ["Baiting","Engenharia social via isca física (ex.: pendrive na entrada)."],
+      ["Biometria","Autenticação via características biológicas (digital, rosto, íris)."],
+      ["Black hat","Hacker que atua sem autorização com intenção maliciosa."],
+      ["Botnet","Rede de máquinas infectadas comandadas remotamente."],
+      ["BIOS/UEFI","Firmware que inicia o hardware e carrega o kernel."],
+      ["Buffer","Área de memória temporária para dados em trânsito."],
+      ["CIA","Confidencialidade, Integridade, Disponibilidade."],
+      ["Cache","Memória rápida que guarda cópia de dados recentes."],
+      ["Certificado digital","Documento eletrônico com chave pública assinado por uma CA."],
+      ["chmod","Comando Unix para alterar permissões de arquivo."],
+      ["CISO","Chief Information Security Officer."],
+      ["Cloud","Computação em nuvem (AWS, Azure, GCP)."],
+      ["Contêiner","Ambiente isolado que compartilha o kernel do host (Docker)."],
+      ["Cookie","Pequeno arquivo de sessão armazenado pelo navegador."],
+      ["CPU","Central Processing Unit, o processador."],
+      ["CSRF","Cross-Site Request Forgery."],
+      ["DDoS","Distributed Denial of Service."],
+      ["Deadlock","Bloqueio mútuo entre processos."],
+      ["Driver","Software que permite ao S.O. comunicar com hardware específico."],
+      ["DMA","Direct Memory Access."],
+      ["EDR","Endpoint Detection and Response."],
+      ["Encriptação","Processo de transformar texto claro em texto cifrado."],
+      ["Engenharia social","Manipular pessoas para obter informações ou acesso."],
+      ["Escalonador","Parte do S.O. que decide qual processo vai rodar."],
+      ["ext4","Sistema de arquivos padrão em muitas distribuições Linux."],
+      ["FAT32","Sistema de arquivos antigo, limite de 4 GB por arquivo."],
+      ["FCFS","First Come, First Served — escalonamento simples."],
+      ["Firewall","Software/hardware que filtra tráfego de rede."],
+      ["Forense digital","Investigação de evidências digitais após incidente."],
+      ["Gerenciador de senhas","Programa que armazena e gera senhas únicas."],
+      ["Hash","Função matemática que produz resumo irreversível."],
+      ["Hypervisor","Software que gerencia máquinas virtuais."],
+      ["HTTPS","HTTP com TLS, criptografado."],
+      ["IaaS","Infrastructure as a Service."],
+      ["IDS / IPS","Sistemas de detecção/prevenção de intrusão."],
+      ["Interrupção","Sinal do hardware para CPU tratar evento."],
+      ["Keylogger","Malware que registra teclas digitadas."],
+      ["Kernel","Núcleo do sistema operacional."],
+      ["LGPD","Lei Geral de Proteção de Dados Pessoais (Brasil)."],
+      ["LRU","Least Recently Used — substituição de página."],
+      ["Malware","Software malicioso (termo genérico)."],
+      ["MITM","Man in the Middle."],
+      ["MMU","Memory Management Unit."],
+      ["MFA","Multi-factor Authentication (ver 2FA)."],
+      ["NTFS","Sistema de arquivos padrão do Windows."],
+      ["OWASP","Fundação que mantém o Top 10 de vulnerabilidades web."],
+      ["Página (memória)","Unidade fixa da memória virtual."],
+      ["Page fault","Acesso a página não presente na RAM."],
+      ["PaaS","Platform as a Service."],
+      ["PCB","Process Control Block — estrutura do kernel que representa um processo."],
+      ["Pentest","Teste de intrusão autorizado."],
+      ["Phishing","Ataque de engenharia social via mensagens falsas."],
+      ["PID","Process ID — identificador único de processo."],
+      ["Preempção","O S.O. tira um processo da CPU à força."],
+      ["Processo","Programa em execução."],
+      ["Prompt","Linha que espera comandos (CLI)."],
+      ["Quantum","Fatia de tempo no Round-Robin."],
+      ["Ransomware","Malware que cifra dados e exige resgate."],
+      ["Red team","Equipe que simula ataques."],
+      ["RSA","Algoritmo de criptografia assimétrica."],
+      ["RTOS","Real-Time Operating System."],
+      ["SaaS","Software as a Service."],
+      ["Sandbox","Ambiente isolado para execução segura."],
+      ["Scheduler","Ver escalonador."],
+      ["SHA-256","Função hash forte amplamente usada."],
+      ["Shell","Interface de comandos do S.O."],
+      ["SJF","Shortest Job First — escalonamento."],
+      ["SOC","Security Operations Center."],
+      ["Spyware","Malware que espiona o usuário."],
+      ["SQL Injection","Injeção de SQL em aplicações inseguras."],
+      ["SSH","Secure Shell."],
+      ["Starvation","Quando um processo nunca ganha CPU."],
+      ["Swap","Área no disco usada como extensão da RAM."],
+      ["System call","Chamada do programa ao kernel."],
+      ["TCP/IP","Conjunto de protocolos base da Internet."],
+      ["Thread","Linha de execução dentro de um processo."],
+      ["Thrashing","Sobrecarga de paginação que degrada o sistema."],
+      ["TLS","Transport Layer Security, base do HTTPS."],
+      ["Trojan","Malware disfarçado de programa legítimo."],
+      ["UEFI","Sucessor do BIOS."],
+      ["Unix","Família de S.O. criada em 1969 (base de macOS/iOS/Linux/Android)."],
+      ["VPN","Virtual Private Network."],
+      ["Virtualização","Simulação de computador dentro de outro."],
+      ["Vírus","Malware que precisa de hospedeiro para se espalhar."],
+      ["Whaling","Phishing direcionado a executivos."],
+      ["White hat","Hacker ético, atua com autorização."],
+      ["Worm","Malware que se replica sozinho pela rede."],
+      ["XSS","Cross-Site Scripting."],
+      ["Zero-day","Vulnerabilidade ainda não corrigida."]
+    ];
+
+    function render(filter = "") {
+      const f = filter.toLowerCase();
+      const filtered = terms.filter(([k,v]) => k.toLowerCase().includes(f) || v.toLowerCase().includes(f));
+      const byLetter = {};
+      filtered.forEach(([k,v]) => {
+        const L = k[0].toUpperCase();
+        (byLetter[L] = byLetter[L] || []).push([k,v]);
+      });
+      const root = document.getElementById("glossary");
+      if (!filtered.length) { root.innerHTML = '<p class="muted">Nada encontrado.</p>'; return; }
+      root.innerHTML = Object.keys(byLetter).sort().map(L => `
+        <h2 style="border-bottom:1px solid var(--border); padding-bottom:4px; color:var(--primary)">${L}</h2>
+        <dl>
+          ${byLetter[L].map(([k,v]) => `
+            <dt style="margin-top:10px"><strong>${k}</strong></dt>
+            <dd style="margin:0 0 6px 0; color:var(--text-dim)">${v}</dd>
+          `).join("")}
+        </dl>
+      `).join("");
+    }
+    render();
+    document.getElementById("search").addEventListener("input", e => render(e.target.value));
+  </script>
+</body>
+</html>

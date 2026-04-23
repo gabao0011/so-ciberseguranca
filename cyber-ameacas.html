@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tipos de ameaças — Aula 3</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="cyber" data-page="ameacas">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="cyber.html">Cibersegurança</a><span>›</span> Ameaças</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip cyber">Aula 3 • Cibersegurança</span>
+          <h1>Tipos de ameaças</h1>
+          <p class="lead">Entender o que existe lá fora é o primeiro passo para se proteger.</p>
+
+          <h2>De onde vêm as ameaças?</h2>
+          <ul>
+            <li><strong>Externas:</strong> atacantes de fora da organização (hackers, grupos, governos).</li>
+            <li><strong>Internas:</strong> funcionários, estagiários, terceirizados — com ou sem má intenção.</li>
+            <li><strong>Acidentais:</strong> derramou café no notebook, deletou sem querer, usou pendrive infectado.</li>
+          </ul>
+
+          <h2>Principais tipos de ataque</h2>
+          <table>
+            <thead><tr><th>Nome</th><th>O que é</th></tr></thead>
+            <tbody>
+              <tr><td>Phishing</td><td>E-mails/links falsos para roubar senhas.</td></tr>
+              <tr><td>Malware</td><td>Qualquer software malicioso (vírus, worm, trojan…).</td></tr>
+              <tr><td>Ransomware</td><td>Criptografa seus dados e pede resgate.</td></tr>
+              <tr><td>DDoS</td><td>Milhares de pedidos para derrubar um serviço.</td></tr>
+              <tr><td>MITM</td><td>Atacante "no meio" da conversa, lendo/alterando dados.</td></tr>
+              <tr><td>Brute force</td><td>Testar muitas senhas até acertar.</td></tr>
+              <tr><td>SQL Injection</td><td>Enganar o banco de dados inserindo código SQL em campos.</td></tr>
+              <tr><td>XSS</td><td>Injetar JavaScript malicioso em um site.</td></tr>
+              <tr><td>Zero-day</td><td>Falha desconhecida sendo explorada antes do patch.</td></tr>
+              <tr><td>Engenharia social</td><td>Manipular pessoas (não o software).</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Atores de ameaça</h2>
+          <ul>
+            <li><strong>Script kiddies:</strong> iniciantes usando ferramentas prontas.</li>
+            <li><strong>Cibercriminosos:</strong> querem dinheiro.</li>
+            <li><strong>Hacktivistas:</strong> motivação política/ideológica.</li>
+            <li><strong>APT (Advanced Persistent Threat):</strong> grupos organizados, às vezes estatais.</li>
+            <li><strong>Insiders:</strong> alguém de dentro.</li>
+          </ul>
+
+          <div class="callout warn">
+            <strong>Moral da história:</strong>
+            Você não precisa ser "importante" para ser atacado. A maioria dos ataques é automatizada
+            e atinge quem estiver vulnerável.
+          </div>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q:"MITM significa:", options:[
+        "Manutenção Interna de TI Mensal",
+        "Man In The Middle",
+        "Multi-Internet Tunnel Mode",
+        "Multi-Input Text Manager"
+      ], correct:1, explain:"Man in the middle: atacante se posiciona entre você e o destino." },
+      { q:"Zero-day é uma falha que...",
+        options:[
+          "acaba de ser descoberta e ainda não tem correção",
+          "dura zero dias",
+          "só acontece de madrugada",
+          "existe há mais de 10 anos"
+        ], correct:0, explain:"Zero-day: o fabricante ainda não publicou o patch." },
+      { q:"Qual ataque mira a disponibilidade?",
+        options:["Phishing","DDoS","SQL Injection","Keylogger"], correct:1,
+        explain:"DDoS sobrecarrega o serviço para torná-lo indisponível." }
+    ], { title:"Fixando a Aula 3" });
+  </script>
+</body></html>
