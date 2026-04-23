@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minigames — S.O. &amp; Cyber</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-nav="minigames">
+  <main>
+    <div class="container">
+      <div class="section-header">
+        <span class="chip">Hands-on</span>
+        <div>
+          <h1>Minigames &amp; Simuladores</h1>
+          <p class="sub">Brinque, quebre, aprenda. Todos os jogos rodam 100% no seu navegador.</p>
+        </div>
+      </div>
+
+      <div class="card-grid" style="margin-top:20px;">
+        <a class="card so" href="so-escalonamento.html#schedGame">
+          <span class="chip so">S.O.</span>
+          <h3>Simulador de escalonamento</h3>
+          <p>FCFS, SJF e Round-Robin. Veja o diagrama de Gantt e as métricas.</p>
+        </a>
+        <a class="card so" href="so-memoria.html#pgGame">
+          <span class="chip so">S.O.</span>
+          <h3>Paginação: FIFO x LRU</h3>
+          <p>Descubra por que LRU costuma ganhar em sequências reais.</p>
+        </a>
+        <a class="card so" href="so-arquivos.html#chmodGame">
+          <span class="chip so">S.O.</span>
+          <h3>Monte as permissões chmod</h3>
+          <p>Clique nos bits <code>rwx</code> até acertar o alvo.</p>
+        </a>
+        <a class="card cyber" href="cyber-senhas.html#pwGame">
+          <span class="chip cyber">Cyber</span>
+          <h3>Medidor de senha</h3>
+          <p>Entropia, critérios, tempo estimado de quebra. Teste suas senhas com segurança.</p>
+        </a>
+        <a class="card cyber" href="cyber-engenharia.html#phishGame">
+          <span class="chip cyber">Cyber</span>
+          <h3>Radar antiphishing</h3>
+          <p>10 e-mails para classificar. Vai desenvolver seu olhar crítico.</p>
+        </a>
+        <a class="card cyber" href="cyber-criptografia.html#caesarGame">
+          <span class="chip cyber">Cyber</span>
+          <h3>Cifra de César</h3>
+          <p>Cifre e decifre mensagens com deslocamento. Tem desafio embutido.</p>
+        </a>
+      </div>
+
+      <h2 style="margin-top:40px;">Flashcards</h2>
+      <p class="muted">Clique para virar a carta. Ótimo pra revisar antes da prova.</p>
+      <div class="flashcards" id="flashcards"></div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script>
+    const cards = [
+      { q:"Kernel", a:"Núcleo do S.O. que roda em modo privilegiado e fala com o hardware."},
+      { q:"Processo", a:"Programa em execução, com memória, estado e PID próprios."},
+      { q:"Thread", a:"Linha de execução dentro de um processo. Compartilha memória com outras threads do mesmo processo."},
+      { q:"Round-Robin", a:"Algoritmo de escalonamento em que cada processo ganha um quantum fixo de CPU."},
+      { q:"Page fault", a:"Quando a página acessada não está na RAM — precisa ser buscada no disco."},
+      { q:"chmod 755", a:"rwxr-xr-x — dono tudo, grupo e outros leem e executam."},
+      { q:"Deadlock", a:"Situação em que processos ficam esperando recursos uns dos outros para sempre."},
+      { q:"Phishing", a:"Ataque de engenharia social que usa e-mails ou mensagens falsas para roubar dados."},
+      { q:"Tríade CIA", a:"Confidencialidade, Integridade, Disponibilidade."},
+      { q:"Hash", a:"Resumo irreversível de tamanho fixo de um conteúdo (ex.: SHA-256)."},
+      { q:"2FA", a:"Autenticação em dois fatores — combina coisa que você sabe e coisa que você tem."},
+      { q:"HTTPS", a:"HTTP com TLS. Usa criptografia assimétrica para trocar chave simétrica segura."},
+      { q:"DDoS", a:"Ataque distribuído de negação de serviço — derruba por volume de tráfego."},
+      { q:"LGPD", a:"Lei Geral de Proteção de Dados (Brasil, 2018), fiscalizada pela ANPD."},
+      { q:"Ransomware", a:"Malware que criptografa dados e exige resgate para liberar."},
+      { q:"VPN", a:"Rede Privada Virtual — túnel criptografado entre cliente e servidor."},
+    ];
+    const root = document.getElementById("flashcards");
+    root.innerHTML = cards.map((c,i)=>`
+      <div class="flashcard" data-i="${i}">
+        <div class="flashcard-inner">
+          <div class="face front"><strong>${c.q}</strong></div>
+          <div class="face back">${c.a}</div>
+        </div>
+      </div>`).join("");
+    root.querySelectorAll(".flashcard").forEach(el =>
+      el.addEventListener("click", ()=> el.classList.toggle("flipped")));
+  </script>
+</body>
+</html>

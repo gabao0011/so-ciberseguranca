@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segurança Web e mobile — Aula 9</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="cyber" data-page="web">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="cyber.html">Cibersegurança</a><span>›</span> Segurança Web</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip cyber">Aula 9 • Cibersegurança</span>
+          <h1>Segurança Web e mobile</h1>
+          <p class="lead">Como quem estuda DEV, você vai construir sites e apps. Vale conhecer os ataques mais comuns e como evitá-los no código.</p>
+
+          <h2>OWASP Top 10 (resumido)</h2>
+          <p>A OWASP mantém uma lista dos maiores riscos web. Os 3 clássicos que toda escola deveria ensinar:</p>
+
+          <h3>SQL Injection</h3>
+          <p>Atacante envia código SQL dentro de um campo. Se o sistema concatena strings, o banco executa comandos indesejados.</p>
+<pre><code>// INSEGURO
+query = "SELECT * FROM users WHERE email = '" + email + "'";
+// Se email = ' OR '1'='1 → retorna todos
+
+// SEGURO (prepared statements)
+query = "SELECT * FROM users WHERE email = ?";
+stmt.bind(email);</code></pre>
+
+          <h3>XSS — Cross-Site Scripting</h3>
+          <p>Atacante injeta JavaScript num site para roubar cookies, redirecionar ou enganar o usuário.</p>
+          <ul>
+            <li>Sanitize input antes de mostrar (<code>&lt;</code> vira <code>&amp;lt;</code>).</li>
+            <li>Use Content Security Policy (CSP).</li>
+            <li>Cookies <code>HttpOnly</code> + <code>Secure</code>.</li>
+          </ul>
+
+          <h3>Broken Authentication</h3>
+          <p>Sistemas que armazenam senha em texto, não bloqueiam após tentativas, não invalidam sessão...</p>
+
+          <h2>Outros riscos</h2>
+          <ul>
+            <li><strong>CSRF:</strong> forçar você a executar ação autenticada sem querer.</li>
+            <li><strong>IDOR:</strong> trocar o ID na URL (<code>/pedido/123</code>) e ver o pedido de outro usuário.</li>
+            <li><strong>Uploads perigosos:</strong> aceitar arquivos <code>.php</code> em pastas executáveis.</li>
+            <li><strong>Dependências vulneráveis:</strong> atualize seu <code>npm</code> / <code>composer</code>.</li>
+          </ul>
+
+          <h2>Segurança mobile</h2>
+          <ul>
+            <li>Instale apps <strong>apenas da loja oficial</strong>.</li>
+            <li>Revise as <strong>permissões</strong> (por que um app de lanterna precisa de contatos?).</li>
+            <li>Ative o bloqueio de tela e a criptografia do dispositivo.</li>
+            <li>Cuidado com redes Wi-Fi desconhecidas.</li>
+            <li>Desative Bluetooth/NFC quando não usar.</li>
+          </ul>
+
+          <div class="callout ok">
+            <strong>Regra #1 para devs:</strong>
+            Nunca confie em <em>input</em> do usuário. Sempre valide, sanitize e use prepared statements.
+          </div>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q:"Como evitar SQL Injection?",
+        options:["Confiar no usuário","Usar prepared statements / parâmetros","Usar senhas mais longas","Aumentar a RAM"], correct:1,
+        explain:"Prepared statements separam o comando SQL dos valores do usuário." },
+      { q:"XSS mira:",
+        options:["O banco de dados","O navegador de outros usuários","O antivírus","A impressora"], correct:1,
+        explain:"Injeta JS que roda no navegador de quem acessa o site." },
+      { q:"App de lanterna pede acesso aos seus contatos. O que fazer?",
+        options:["Conceder, pra app funcionar","Negar e desconfiar","Apagar o celular","Formatar o roteador"], correct:1,
+        explain:"Permissão desnecessária é red flag. Revise e negue." }
+    ], { title:"Fixando a Aula 9" });
+  </script>
+</body></html>

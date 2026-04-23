@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de arquivos — Aula 7</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="so" data-page="arquivos">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="so.html">Sistemas Operacionais</a><span>›</span> Arquivos</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip so">Aula 7 • Sistemas Operacionais</span>
+          <h1>Sistema de arquivos e permissões</h1>
+          <p class="lead">
+            Todo arquivo tem um nome, um lugar no disco e um dono. O <strong>sistema de arquivos</strong>
+            é quem organiza tudo e garante que você <em>encontre</em> o que salvou — e que ninguém
+            sem permissão leia ou apague seus dados.
+          </p>
+
+          <h2>Tipos de sistema de arquivos</h2>
+          <table>
+            <thead><tr><th>Sistema</th><th>Usado em</th><th>Observações</th></tr></thead>
+            <tbody>
+              <tr><td>FAT32</td><td>Pendrives antigos</td><td>Arquivos até 4 GB apenas.</td></tr>
+              <tr><td>exFAT</td><td>Pendrives e cartões SD</td><td>Arquivos grandes; multiplataforma.</td></tr>
+              <tr><td>NTFS</td><td>Windows</td><td>Suporta permissões, arquivos grandes, journaling.</td></tr>
+              <tr><td>ext4</td><td>Linux</td><td>Padrão na maioria das distros.</td></tr>
+              <tr><td>APFS</td><td>macOS</td><td>Otimizado para SSD.</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Estrutura hierárquica</h2>
+          <p>O sistema organiza arquivos em <strong>diretórios</strong> (pastas), formando uma <strong>árvore</strong>:</p>
+<pre><code>/ (raiz, no Linux)
+├── home/
+│   └── gabriel/
+│       ├── Documentos/
+│       └── trabalho.txt
+├── etc/
+└── var/</code></pre>
+          <p>No Windows, cada disco tem uma raiz própria (C:\, D:\, etc.).</p>
+
+          <h2>Caminhos absolutos x relativos</h2>
+          <ul>
+            <li><strong>Absoluto:</strong> começa da raiz. Ex.: <code>/home/gabriel/foto.png</code>.</li>
+            <li><strong>Relativo:</strong> a partir de onde você está. Ex.: <code>../imagens/foto.png</code>.</li>
+            <li><code>.</code> = pasta atual &nbsp; <code>..</code> = pasta anterior.</li>
+          </ul>
+
+          <h2>Metadados de um arquivo</h2>
+          <ul>
+            <li>Nome, tamanho, data de criação e modificação.</li>
+            <li>Dono (usuário) e grupo.</li>
+            <li>Permissões (<code>rwx</code>).</li>
+            <li>Endereço físico / inode (onde está no disco).</li>
+          </ul>
+
+          <h2>Permissões estilo Unix (rwx)</h2>
+          <p>
+            No Linux/Unix, cada arquivo tem 3 grupos de permissão: <strong>dono</strong>, <strong>grupo</strong>
+            e <strong>outros</strong>. Cada grupo pode ter <code>r</code> (ler), <code>w</code> (escrever)
+            e <code>x</code> (executar).
+          </p>
+<pre><code>-rwxr-xr--  1 gabriel alunos  1234  hoje  tarefa.sh
+ │└─┬─┘└─┬─┘└─┬─┘     dono   grupo
+ │  dono grupo outros</code></pre>
+
+          <h2>Notação octal (chmod 755)</h2>
+          <p>Cada grupo vira um número de 0 a 7 somando os bits:</p>
+          <table>
+            <thead><tr><th>Permissão</th><th>Binário</th><th>Octal</th></tr></thead>
+            <tbody>
+              <tr><td>---</td><td>000</td><td>0</td></tr>
+              <tr><td>--x</td><td>001</td><td>1</td></tr>
+              <tr><td>-w-</td><td>010</td><td>2</td></tr>
+              <tr><td>-wx</td><td>011</td><td>3</td></tr>
+              <tr><td>r--</td><td>100</td><td>4</td></tr>
+              <tr><td>r-x</td><td>101</td><td>5</td></tr>
+              <tr><td>rw-</td><td>110</td><td>6</td></tr>
+              <tr><td>rwx</td><td>111</td><td>7</td></tr>
+            </tbody>
+          </table>
+          <p>Então <code>chmod 755 script.sh</code> significa <code>rwxr-xr-x</code>:
+          dono faz tudo, grupo e outros podem ler e executar.</p>
+
+          <div class="callout warn">
+            <strong>Cuidado com 777!</strong>
+            <code>chmod 777</code> libera tudo pra todo mundo — péssima ideia em servidores.
+          </div>
+
+          <h2>Minigame: monte as permissões</h2>
+          <p>Clique nos bits <code>r</code>, <code>w</code>, <code>x</code> até formar a permissão pedida.
+          O número octal aparece automaticamente.</p>
+          <div class="game" id="chmodGame"></div>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/games/chmod.js"></script>
+  <script>
+    ChmodGame.mount(document.getElementById("chmodGame"));
+    Quiz.render(document.getElementById("quiz"), [
+      { q: "O que significa <code>chmod 644 arquivo.txt</code>?",
+        options: [
+          "rwx rwx rwx",
+          "rw- r-- r--",
+          "r-x r-x r-x",
+          "rw- rw- rw-"
+        ], correct: 1,
+        explain: "6=rw-, 4=r--. Dono lê/escreve, grupo e outros só leem."
+      },
+      { q: "O caminho <code>../dados/x.txt</code> é:",
+        options: ["Absoluto", "Relativo", "Temporário", "Criptografado"], correct: 1,
+        explain: "Começa com '..' (pasta anterior), logo é relativo à pasta atual."
+      },
+      { q: "Qual sistema de arquivos NÃO suporta arquivos maiores que 4 GB?",
+        options: ["NTFS", "ext4", "FAT32", "exFAT"], correct: 2,
+        explain: "FAT32 tem limite de 4 GB por arquivo — problema comum com vídeos em HD."
+      }
+    ], { title: "Fixando a Aula 7" });
+  </script>
+</body>
+</html>

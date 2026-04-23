@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senhas e autenticação — Aula 6</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="cyber" data-page="senhas">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="cyber.html">Cibersegurança</a><span>›</span> Senhas</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip cyber">Aula 6 • Cibersegurança</span>
+          <h1>Senhas e autenticação</h1>
+          <p class="lead">
+            Sua senha é a chave da sua vida digital. Aqui você vai aprender o que torna
+            uma senha forte, por que <strong>tamanho importa mais que complicação</strong>
+            e como o 2FA salva o dia.
+          </p>
+
+          <h2>O que é autenticação?</h2>
+          <p>É o processo de provar que você é você. Existem três fatores:</p>
+          <ol>
+            <li><strong>Algo que você sabe</strong> — senha, PIN.</li>
+            <li><strong>Algo que você tem</strong> — celular com app autenticador, token físico.</li>
+            <li><strong>Algo que você é</strong> — biometria (digital, rosto).</li>
+          </ol>
+          <p><strong>2FA / MFA</strong> = usar pelo menos dois fatores. Ex.: senha + código do Google Authenticator.</p>
+
+          <h2>O que faz uma senha ser forte?</h2>
+          <ul>
+            <li><strong>Comprimento</strong> (o que mais importa). Mínimo 12 caracteres.</li>
+            <li>Mistura de letras maiúsculas, minúsculas, números e símbolos.</li>
+            <li><strong>Não contém</strong> palavras comuns, nome, data de nascimento, <code>123456</code>, <code>senha</code>.</li>
+            <li>Não é reutilizada em vários sites.</li>
+          </ul>
+
+          <h2>Passphrases — mais fortes e fáceis</h2>
+          <p>
+            Em vez de <code>Abc@123</code>, prefira uma frase: <code>urso-azul-dormiu-no-teclado-2049</code>.
+            Longo, fácil de lembrar, muito difícil de quebrar por força bruta.
+          </p>
+
+          <h2>Minigame — Medidor de senha</h2>
+          <p>Digite uma senha e veja em tempo real o que falta para ela ficar forte
+          (o teste acontece só no seu navegador — nada sai daqui).</p>
+          <div class="game" id="pwGame"></div>
+
+          <h2>Gerenciador de senhas</h2>
+          <p>
+            Ninguém consegue guardar 100 senhas únicas na cabeça. Use um gerenciador:
+            <strong>Bitwarden</strong>, <strong>1Password</strong>, <strong>KeePass</strong>, <strong>Proton Pass</strong>.
+            Ele gera e guarda senhas fortes — você só lembra <em>uma</em> senha mestra (bem longa).
+          </p>
+
+          <h2>Vazamentos de dados</h2>
+          <p>
+            Sites são invadidos o tempo todo. Sua senha daquele jogo de 2015 pode estar no mercado negro hoje.
+            Verifique seu e-mail em <a href="https://haveibeenpwned.com" target="_blank">haveibeenpwned.com</a>.
+          </p>
+
+          <div class="callout warn">
+            <strong>Cuidado:</strong>
+            Nunca mande senha por WhatsApp, e-mail ou Discord. Nenhuma pessoa/empresa séria pede sua senha.
+          </div>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/games/password.js"></script>
+  <script>
+    PasswordGame.mount(document.getElementById("pwGame"));
+    Quiz.render(document.getElementById("quiz"), [
+      { q:"Qual senha é mais forte?",
+        options:[
+          "P@ssw0rd",
+          "gabriel2005",
+          "baunilha-verde-pula-do-telhado!",
+          "12345678"
+        ], correct:2, explain:"Passphrases longas (>20 caracteres) são muito mais fortes." },
+      { q:"2FA significa usar:",
+        options:[
+          "Duas senhas iguais",
+          "Dois fatores de autenticação (ex.: senha + código no celular)",
+          "Dois celulares",
+          "Duplo clique"
+        ], correct:1, explain:"Combina fatores diferentes (algo que sabe + algo que tem)." },
+      { q:"Sobre gerenciadores de senhas:",
+        options:[
+          "Nunca use: é perigoso guardar tudo em um lugar.",
+          "Ajudam a ter senhas únicas e longas em cada site.",
+          "Só servem em grandes empresas.",
+          "Só servem se você decorar todas as senhas."
+        ], correct:1, explain:"São recomendados por todos os órgãos de segurança." }
+    ], { title:"Fixando a Aula 6" });
+  </script>
+</body></html>

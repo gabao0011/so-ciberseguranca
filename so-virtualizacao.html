@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtualização e Nuvem — Aula 10</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="so" data-page="virtualizacao">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="so.html">Sistemas Operacionais</a><span>›</span> Virtualização</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip so">Aula 10 • Sistemas Operacionais</span>
+          <h1>Virtualização e Nuvem</h1>
+          <p class="lead">
+            Até aqui falamos de "um" sistema rodando em "um" computador. Mas hoje é super
+            comum que <strong>vários S.O. rodem ao mesmo tempo</strong> na mesma máquina —
+            é a base da computação em nuvem.
+          </p>
+
+          <h2>O que é virtualização?</h2>
+          <p>
+            Virtualização é criar uma <strong>máquina virtual (VM)</strong> — um computador "de mentirinha"
+            dentro de outro. Ela tem CPU, RAM e disco simulados, e pode rodar qualquer S.O.
+          </p>
+          <p>
+            Quem cuida disso é o <strong>hypervisor</strong> (ex.: VMware, VirtualBox, Hyper-V, KVM).
+          </p>
+
+          <h2>Tipos de hypervisor</h2>
+          <ul>
+            <li><strong>Tipo 1 (bare metal):</strong> roda direto no hardware. Usado em datacenters (VMware ESXi, Hyper-V, Xen, KVM).</li>
+            <li><strong>Tipo 2 (hosted):</strong> roda como programa dentro de um S.O. comum (VirtualBox, VMware Workstation).</li>
+          </ul>
+
+          <h2>Por que usar VMs?</h2>
+          <ul>
+            <li><strong>Isolamento:</strong> um problema em uma VM não derruba as outras.</li>
+            <li><strong>Aproveitamento:</strong> um servidor potente pode hospedar dezenas de VMs.</li>
+            <li><strong>Teste:</strong> você pode rodar Linux dentro do Windows sem reinstalar.</li>
+            <li><strong>Segurança:</strong> ambiente sandbox para analisar malware.</li>
+          </ul>
+
+          <h2>Contêineres (Docker)</h2>
+          <p>
+            VMs simulam o hardware inteiro (pesado). <strong>Contêineres</strong> compartilham o kernel do
+            hospedeiro e isolam só o necessário. São <em>muito</em> mais leves e iniciam em segundos.
+          </p>
+          <table>
+            <thead><tr><th></th><th>VM</th><th>Contêiner</th></tr></thead>
+            <tbody>
+              <tr><td>O que virtualiza</td><td>Hardware + S.O.</td><td>Somente o aplicativo e suas bibliotecas</td></tr>
+              <tr><td>Tamanho</td><td>GB</td><td>MB</td></tr>
+              <tr><td>Tempo de boot</td><td>Minutos</td><td>Segundos</td></tr>
+              <tr><td>Isolamento</td><td>Mais forte</td><td>Mais leve</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Nuvem (Cloud)</h2>
+          <p>
+            A <strong>computação em nuvem</strong> é "alugar" poder computacional em datacenters via internet.
+            Provedores famosos:
+          </p>
+          <ul>
+            <li><strong>AWS</strong> (Amazon)</li>
+            <li><strong>Azure</strong> (Microsoft)</li>
+            <li><strong>Google Cloud Platform (GCP)</strong></li>
+            <li><strong>Oracle Cloud</strong>, <strong>IBM Cloud</strong>, etc.</li>
+          </ul>
+
+          <p>Modelos de serviço:</p>
+          <ul>
+            <li><strong>IaaS</strong> (Infraestrutura como Serviço) — você aluga a VM.</li>
+            <li><strong>PaaS</strong> (Plataforma) — você só envia o código; a plataforma roda.</li>
+            <li><strong>SaaS</strong> (Software) — você só usa o aplicativo (Gmail, Netflix).</li>
+          </ul>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q: "Qual a principal diferença entre VM e contêiner?",
+        options: [
+          "VM é gratuita; contêiner é pago.",
+          "Contêiner compartilha o kernel do host; VM simula hardware completo.",
+          "VM só roda Windows.",
+          "Contêiner só funciona na nuvem."
+        ], correct: 1,
+        explain: "Contêineres compartilham o kernel (leves); VMs simulam máquina completa."
+      },
+      { q: "Qual serviço é um exemplo de SaaS?",
+        options: ["AWS EC2", "Gmail", "Docker", "KVM"], correct: 1,
+        explain: "SaaS = o software já está pronto e você apenas usa (Gmail, Netflix, Spotify…)."
+      }
+    ], { title: "Fixando a Aula 10" });
+  </script>
+</body>
+</html>

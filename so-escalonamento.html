@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escalonamento de CPU — Aula 5</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="so" data-page="escalonamento">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="so.html">Sistemas Operacionais</a><span>›</span> Escalonamento</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip so">Aula 5 • Sistemas Operacionais</span>
+          <h1>Escalonamento de CPU</h1>
+          <p class="lead">
+            Se só tem um núcleo e 50 processos querendo rodar, <strong>quem roda primeiro?</strong>
+            Essa decisão é do <strong>escalonador</strong>, um pedacinho do kernel que alterna os processos
+            tão rápido que parecem rodar juntos.
+          </p>
+
+          <h2>Por que existe?</h2>
+          <p>
+            A CPU é um recurso escasso. O escalonador busca:
+          </p>
+          <ul>
+            <li><strong>Justiça</strong> — todo mundo pega um pedaço.</li>
+            <li><strong>Eficiência</strong> — aproveitar a CPU ao máximo.</li>
+            <li><strong>Resposta rápida</strong> — que a interface não trave.</li>
+            <li><strong>Previsibilidade</strong> — em sistemas de tempo real, garantir prazos.</li>
+          </ul>
+
+          <h2>Termos importantes</h2>
+          <ul>
+            <li><strong>Burst de CPU:</strong> quanto tempo o processo precisa usar a CPU.</li>
+            <li><strong>Tempo de espera:</strong> tempo que ficou na fila de prontos.</li>
+            <li><strong>Tempo de retorno (turnaround):</strong> tempo total desde que chegou até terminar.</li>
+            <li><strong>Preempção:</strong> o S.O. tira o processo da CPU antes dele querer sair.</li>
+          </ul>
+
+          <h2>Principais algoritmos</h2>
+
+          <h3>FCFS — First Come, First Served</h3>
+          <p>"Primeiro que chega, primeiro que é servido." Simples, sem preempção. Problema: se o primeiro
+          é muito grande, os outros esperam demais (<em>efeito comboio</em>).</p>
+
+          <h3>SJF — Shortest Job First</h3>
+          <p>Roda o processo com o menor <em>burst</em> primeiro. Minimiza o tempo médio de espera.
+          Problema: na prática, não dá pra saber o burst com exatidão.</p>
+
+          <h3>Round-Robin (RR)</h3>
+          <p>Cada processo ganha um <em>quantum</em> (fatia de tempo, ex.: 20 ms). Se não terminar,
+          volta para o fim da fila. É o algoritmo típico em tempo compartilhado.</p>
+
+          <h3>Prioridades</h3>
+          <p>Cada processo tem uma prioridade; o de maior prioridade roda primeiro.
+          Problema: <em>starvation</em> (processos de baixa prioridade nunca rodam).
+          Solução: <em>aging</em> — envelhecer a prioridade com o tempo.</p>
+
+          <h3>Multi-fila (MLFQ)</h3>
+          <p>Várias filas com políticas diferentes. Processos interativos (que bloqueiam pra esperar input)
+          sobem para filas de alta prioridade; os que "seguram" a CPU descem.</p>
+
+          <h2>Simulador interativo</h2>
+          <p>Configure os processos (tempo de chegada e burst), escolha o algoritmo e veja o Gantt.</p>
+          <div class="game" id="schedGame"></div>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/games/scheduler.js"></script>
+  <script>
+    SchedulerGame.mount(document.getElementById("schedGame"));
+    Quiz.render(document.getElementById("quiz"), [
+      { q: "No FCFS, se P1 (burst 20) chega antes de P2 (burst 1), qual é o principal problema?",
+        options: ["SJF é melhor", "Efeito comboio — P2 espera muito", "P2 trava", "P1 roda mais rápido"], correct: 1,
+        explain: "FCFS não olha o tamanho — processos curtos sofrem atrás de um longo."
+      },
+      { q: "Round-Robin usa uma fatia de tempo chamada de:",
+        options: ["Burst", "Quantum", "Ticket", "Prioridade"], correct: 1,
+        explain: "Cada processo roda por um quantum; se não termina, volta pro fim da fila."
+      },
+      { q: "O que é 'starvation' (inanição)?",
+        options: [
+          "Processo que acaba muito rápido.",
+          "Processo que fica sem RAM.",
+          "Processo de baixa prioridade que nunca consegue rodar.",
+          "Processo que consome muita bateria."
+        ], correct: 2,
+        explain: "Starvation: processos de baixa prioridade nunca ganham CPU. Combate-se com 'aging'."
+      }
+    ], { title: "Fixando a Aula 5" });
+  </script>
+</body>
+</html>

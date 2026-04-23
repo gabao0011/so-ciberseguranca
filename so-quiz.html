@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz final — S.O.</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="so" data-page="quiz">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="so.html">Sistemas Operacionais</a><span>›</span> Quiz final</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip ok">Quiz final • Sistemas Operacionais</span>
+          <h1>Desafio S.O. — 20 questões</h1>
+          <p class="lead">Misturamos conteúdo de todas as 10 aulas. Responda com calma — e boa sorte!</p>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q: "O S.O. é um software que...", options:[
+        "substitui o hardware",
+        "gerencia hardware e oferece serviços aos programas",
+        "só serve para jogos",
+        "executa apenas um programa por vez"
+      ], correct:1, explain:"É a definição clássica." },
+      { q: "Um processo tem vários campos no PCB. Qual NÃO costuma estar lá?",
+        options:["Registradores","Estado","Permissões rwx do arquivo do programa","Prioridade"], correct:2,
+        explain:"Permissões rwx vivem no sistema de arquivos, não no PCB." },
+      { q: "Round-Robin usa um quantum. O que acontece se o processo não termina dentro dele?",
+        options:["Ele é abortado","Volta para o fim da fila de prontos","Ganha prioridade maior","É paginado"], correct:1,
+        explain:"RR é preemptivo: expira o quantum e volta pro final da fila." },
+      { q: "LRU significa...", options:[
+        "Last Recently Used","Least Recently Used","Lowest RAM Used","Logical Ring Update"
+      ], correct:1, explain:"Least Recently Used — substitui a página não usada há mais tempo." },
+      { q: "chmod 750 equivale a:", options:[
+        "rwx r-x ---","rwx rwx r--","rw- r-- r--","rwx --- r-x"
+      ], correct:0, explain:"7=rwx, 5=r-x, 0=---" },
+      { q: "Qual condição NÃO faz parte das 4 de deadlock?",
+        options:["Exclusão mútua","Espera circular","Uso de paginação","Posse e espera"], correct:2,
+        explain:"As 4 são: exclusão mútua, posse e espera, sem preempção, espera circular." },
+      { q: "Um driver é...", options:[
+        "um tipo de vírus","um programa que comunica S.O. com hardware","um sistema de arquivos","um plano de backup"
+      ], correct:1, explain:"Driver é a ponte entre kernel e dispositivo." },
+      { q: "O que é DMA?",
+        options:["Dispositivo de memória auxiliar","Transferência direta entre dispositivo e RAM sem passar pela CPU","Desfragmentador","Sistema de senhas"], correct:1,
+        explain:"Direct Memory Access libera a CPU em transferências grandes." },
+      { q: "Um contêiner se diferencia de uma VM porque:",
+        options:["Usa mais RAM","Compartilha o kernel com o host","Exige hypervisor Tipo 1","Só roda em Windows"], correct:1,
+        explain:"Contêineres compartilham o kernel e são bem mais leves." },
+      { q: "Tempo compartilhado surgiu em qual geração?",
+        options:["1ª","2ª","3ª","4ª"], correct:2, explain:"Chega com a 3ª geração (circuitos integrados)." },
+      { q: "Qual S.O. NÃO é adequado para um marca-passo?",
+        options:["FreeRTOS","VxWorks","Windows 11","Zephyr"], correct:2,
+        explain:"Windows não é S.O. de tempo real." },
+      { q: "Thrashing é quando...", options:[
+        "O processador superaquece",
+        "O sistema passa mais tempo paginando do que executando",
+        "Um processo termina antes do esperado",
+        "O disco enche"
+      ], correct:1, explain:"Ocorre com falta crônica de RAM." },
+      { q: "FAT32 não suporta arquivos acima de:",
+        options:["1 GB","2 GB","4 GB","8 GB"], correct:2, explain:"Limite de 4 GB por arquivo no FAT32." },
+      { q: "PID é...", options:[
+        "Prioridade do processo",
+        "Identificador único do processo",
+        "Painel de integração digital",
+        "Tipo de senha"
+      ], correct:1, explain:"Process ID: número único que identifica o processo." },
+      { q: "Em SJF, se P1 (burst 10) chega em t=0 e P2 (burst 2) em t=1, quem começa em t=0?",
+        options:["P1","P2","Os dois juntos","Nenhum — fica ocioso até t=1"], correct:0,
+        explain:"SJF não é preemptivo: em t=0 só há P1, então P1 começa e roda até o fim." },
+      { q: "Starvation é resolvido tipicamente com:",
+        options:["Mais RAM","Aging","Reinstalar o S.O.","Backup"], correct:1,
+        explain:"Aging aumenta a prioridade com o tempo, evitando que processos fiquem para trás eternamente." },
+      { q: "A MMU...", options:[
+        "Executa instruções aritméticas",
+        "Traduz endereços lógicos para físicos",
+        "Controla a impressora",
+        "Gerencia o disco"
+      ], correct:1, explain:"Memory Management Unit faz essa tradução, geralmente em hardware." },
+      { q: "Um semáforo é usado para:",
+        options:["Medir temperatura","Controlar acesso concorrente a recursos","Criar arquivos","Fazer backup"], correct:1,
+        explain:"Semáforos/mutex protegem regiões críticas em programação concorrente." },
+      { q: "Ao remover um pendrive sem clicar em 'ejetar', o risco é:",
+        options:["Estragar o cabo","Perder dados porque o cache não foi gravado","Formatar o HD","Queimar o PC"], correct:1,
+        explain:"Escritas ficam em cache até o flush — remover antes pode perder o último dado." },
+      { q: "O kernel roda em qual modo?",
+        options:["Usuário","Privilegiado (kernel)","Invisível","Offline"], correct:1,
+        explain:"Modo privilegiado dá acesso total ao hardware." }
+    ], { title: "Quiz final — Sistemas Operacionais" });
+  </script>
+</body>
+</html>

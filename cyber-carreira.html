@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carreira em Cibersegurança — Aula 12</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="cyber" data-page="carreira">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="cyber.html">Cibersegurança</a><span>›</span> Carreira</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip cyber">Aula 12 • Cibersegurança</span>
+          <h1>Carreira em Cibersegurança</h1>
+          <p class="lead">
+            É um dos mercados que <strong>mais crescem no Brasil e no mundo</strong>. Faltam
+            milhões de profissionais. Se você curtiu este conteúdo, aqui vai um roteiro.
+          </p>
+
+          <h2>Principais papéis</h2>
+          <ul>
+            <li><strong>Analista SOC</strong> — monitora alertas em tempo real (blue team).</li>
+            <li><strong>Pentester</strong> — testa a segurança invadindo com autorização (red team).</li>
+            <li><strong>Engenheiro de segurança</strong> — constrói defesas na infra e nas apps.</li>
+            <li><strong>Forense digital</strong> — investiga incidentes e coleta evidências.</li>
+            <li><strong>GRC / compliance</strong> — políticas, LGPD, ISO 27001.</li>
+            <li><strong>AppSec</strong> — foco em segurança de código.</li>
+            <li><strong>CISO</strong> — lidera a estratégia de segurança da empresa.</li>
+          </ul>
+
+          <h2>Red, Blue e Purple Teams</h2>
+          <ul>
+            <li><strong>Red:</strong> ataca (simula adversário).</li>
+            <li><strong>Blue:</strong> defende (detecta e responde).</li>
+            <li><strong>Purple:</strong> junta os dois pra melhorar o blue.</li>
+          </ul>
+
+          <h2>Bases que você precisa</h2>
+          <ol>
+            <li>Redes (TCP/IP, DNS, HTTP).</li>
+            <li>Sistemas operacionais (Linux + Windows).</li>
+            <li>Programação/scripting (Python, Bash).</li>
+            <li>Cloud (AWS ou Azure).</li>
+            <li>Fundamentos de segurança (esta matéria!).</li>
+          </ol>
+
+          <h2>Formas de praticar (gratuitas)</h2>
+          <ul>
+            <li><strong>CTFs</strong> (Capture The Flag) em sites como <a href="https://tryhackme.com" target="_blank">TryHackMe</a>,
+              <a href="https://www.hackthebox.com" target="_blank">HackTheBox</a>,
+              <a href="https://picoctf.org" target="_blank">picoCTF</a>.</li>
+            <li><strong>OverTheWire</strong> — desafios de terminal.</li>
+            <li><strong>RootMe / Hacker101</strong>.</li>
+            <li>Programas de <strong>bug bounty</strong> (HackerOne, BugCrowd) — quando tiver nível.</li>
+          </ul>
+
+          <h2>Certificações valorizadas</h2>
+          <ul>
+            <li>Entrada: <strong>CompTIA Security+</strong>, CC (ISC2), Google Cybersecurity Certificate.</li>
+            <li>Red team: <strong>OSCP</strong>, eJPT, CPTS.</li>
+            <li>Blue team: BTL1, CySA+, GCIH.</li>
+            <li>Nuvem: AWS Security, AZ-500.</li>
+          </ul>
+
+          <h2>Em resumo</h2>
+          <div class="callout ok">
+            <strong>Você é do 1° DEV.</strong>
+            Aproveite pra explorar Linux, Python, CTFs iniciantes e entender bem redes.
+            Em 2–3 anos você já pode estar num estágio de SOC ou AppSec.
+          </div>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q:"Quem simula ataques para encontrar falhas, com autorização, é o:",
+        options:["Blue team","Red team / Pentester","Analista SOC","Auditor fiscal"], correct:1,
+        explain:"Red team joga de adversário para testar as defesas." },
+      { q:"CTF é:",
+        options:["Certified Tech File","Um campeonato de programação competitiva","Um tipo de desafio prático de segurança (Capture The Flag)","Um protocolo de rede"], correct:2,
+        explain:"Capture The Flag: desafios hands-on que ensinam habilidades reais." }
+    ], { title:"Fixando a Aula 12" });
+  </script>
+</body></html>

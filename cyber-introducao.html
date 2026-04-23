@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O que é Cibersegurança — Aula 1</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="cyber" data-page="introducao">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="cyber.html">Cibersegurança</a><span>›</span> Introdução</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip cyber">Aula 1 • Cibersegurança</span>
+          <h1>O que é Cibersegurança?</h1>
+          <p class="lead">
+            Cibersegurança é o conjunto de práticas, ferramentas e hábitos usados para
+            <strong>proteger dados, dispositivos, redes e pessoas</strong> no mundo digital.
+            Envolve tecnologia <em>e</em> comportamento humano.
+          </p>
+
+          <h2>Por que é tão importante hoje?</h2>
+          <ul>
+            <li>Quase tudo está online: escola, banco, saúde, transporte, energia.</li>
+            <li>Um ataque pode <em>parar uma cidade</em>, fechar uma empresa ou vazar a vida de milhões.</li>
+            <li>Dados pessoais viraram moeda — valem dinheiro no mercado negro.</li>
+            <li>A maior vulnerabilidade ainda é <strong>o ser humano</strong>, não o software.</li>
+          </ul>
+
+          <div class="callout info">
+            <strong>Você sabia?</strong>
+            Em 2021 o ataque ao oleoduto Colonial (EUA) parou distribuição de combustível em vários estados.
+            Foi um <em>ransomware</em>. A empresa pagou cerca de US$ 4,4 milhões de resgate.
+          </div>
+
+          <h2>Três ingredientes da cibersegurança</h2>
+          <ol>
+            <li><strong>Pessoas</strong> — treinadas para reconhecer ameaças.</li>
+            <li><strong>Processos</strong> — políticas, backups, respostas a incidentes.</li>
+            <li><strong>Tecnologia</strong> — firewall, antivírus, criptografia, 2FA.</li>
+          </ol>
+
+          <h2>Hacker ≠ Criminoso</h2>
+          <p>
+            "Hacker" originalmente é quem <em>entende profundamente</em> um sistema. Hoje dividimos em:
+          </p>
+          <ul>
+            <li><strong>White hat</strong> (ético): pesquisa vulnerabilidades com autorização.</li>
+            <li><strong>Black hat</strong>: invade sem autorização para ganho pessoal ou dano.</li>
+            <li><strong>Gray hat</strong>: fica no meio termo — invade sem permissão, mas reporta depois.</li>
+          </ul>
+
+          <h2>Principais áreas</h2>
+          <ul>
+            <li><strong>Segurança de redes</strong> (firewall, VPN, IDS).</li>
+            <li><strong>Segurança de aplicações</strong> (código seguro, XSS, SQL injection).</li>
+            <li><strong>Segurança de endpoint</strong> (antivírus, EDR).</li>
+            <li><strong>Identidade e acesso</strong> (autenticação, 2FA).</li>
+            <li><strong>Resposta a incidentes</strong> (SOC, forense).</li>
+            <li><strong>Governança e privacidade</strong> (LGPD, compliance).</li>
+          </ul>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q:"Cibersegurança é principalmente um problema de...",
+        options:["Só tecnologia","Só pessoas","Tecnologia, processos e pessoas","Leis"],
+        correct:2, explain:"Os três pilares atuam juntos. Tecnologia sozinha não resolve." },
+      { q:"O que diferencia um white hat de um black hat?",
+        options:["O white hat ataca sem autorização","O black hat pesquisa com autorização","O white hat age com autorização; o black hat não","Nada, são sinônimos"],
+        correct:2, explain:"Autorização é o divisor. White hats fazem pesquisa ética." },
+      { q:"Ransomware é um tipo de ataque onde:",
+        options:[
+          "O atacante sequestra dados e pede resgate",
+          "O PC envia spam automaticamente",
+          "O hardware queima",
+          "O roteador fica lento"
+        ], correct:0, explain:"Ransom = resgate. O ataque criptografa dados e exige pagamento." }
+    ], { title:"Fixando a Aula 1" });
+  </script>
+</body></html>

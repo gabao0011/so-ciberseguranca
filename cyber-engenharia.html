@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engenharia social — Aula 5</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="cyber" data-page="engenharia">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="cyber.html">Cibersegurança</a><span>›</span> Engenharia Social</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip cyber">Aula 5 • Cibersegurança</span>
+          <h1>Engenharia social</h1>
+          <p class="lead">
+            É a arte de <strong>manipular pessoas</strong> para que entreguem informações ou façam algo
+            que não deveriam. Na prática, é o ataque que <em>quase sempre</em> dá certo —
+            porque mira no elo mais fraco: o humano.
+          </p>
+
+          <h2>Gatilhos psicológicos usados</h2>
+          <ul>
+            <li><strong>Autoridade</strong> — "é o diretor falando!"</li>
+            <li><strong>Urgência</strong> — "sua conta será bloqueada em 1 hora!"</li>
+            <li><strong>Medo</strong> — "invadiram seu e-mail, clique aqui pra trocar a senha."</li>
+            <li><strong>Curiosidade</strong> — "veja a foto que vazou de você."</li>
+            <li><strong>Reciprocidade</strong> — "te ajudei agora, faz essa pra mim?"</li>
+            <li><strong>Ganância</strong> — "você ganhou um iPhone!"</li>
+          </ul>
+
+          <h2>Formas mais comuns</h2>
+          <table>
+            <thead><tr><th>Nome</th><th>Canal</th><th>Exemplo</th></tr></thead>
+            <tbody>
+              <tr><td>Phishing</td><td>E-mail</td><td>"Seu boleto venceu, clique pra regularizar"</td></tr>
+              <tr><td>Spear phishing</td><td>E-mail direcionado</td><td>"Olá &lt;seu nome&gt;, a RH precisa do seu..."</td></tr>
+              <tr><td>Whaling</td><td>E-mail para "peixes grandes"</td><td>Direto ao CEO pedindo transferência.</td></tr>
+              <tr><td>Smishing</td><td>SMS</td><td>"Pacote retido na alfândega. Pague aqui."</td></tr>
+              <tr><td>Vishing</td><td>Ligação</td><td>"Sou do banco, precisamos do seu token."</td></tr>
+              <tr><td>Pretexting</td><td>História falsa</td><td>"Sou do suporte técnico, me passa a senha pra eu resolver."</td></tr>
+              <tr><td>Baiting</td><td>Isca</td><td>Pendrive "perdido" no estacionamento.</td></tr>
+              <tr><td>Tailgating</td><td>Presencial</td><td>Entrar atrás de alguém em área restrita.</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Sinais de alerta em mensagens</h2>
+          <ul>
+            <li>Domínio do remetente estranho (<code>@bancobras1l-seguro.com</code>).</li>
+            <li>Pressa / ameaça / prêmio.</li>
+            <li>Erros de português, formatação estranha.</li>
+            <li>Pede dados sensíveis por e-mail ou link.</li>
+            <li>Link suspeito: passe o mouse antes de clicar — o destino real aparece.</li>
+            <li>Anexos inesperados (<code>.exe</code>, <code>.scr</code>, <code>.zip</code>).</li>
+          </ul>
+
+          <h2>Minigame — Radar antiphishing</h2>
+          <p>Receba vários e-mails e decida: <strong>legítimo</strong> ou <strong>phishing</strong>?</p>
+          <div class="game" id="phishGame"></div>
+
+          <div class="callout ok">
+            <strong>Regra de ouro:</strong>
+            Na dúvida, <em>não clique</em>. Vá ao site/app <strong>oficial</strong> manualmente.
+            Se for seu banco, abre o app do banco direto, não pelo link.
+          </div>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/games/phishing.js"></script>
+  <script>
+    PhishingGame.mount(document.getElementById("phishGame"));
+    Quiz.render(document.getElementById("quiz"), [
+      { q:"Qual é o gatilho mais usado em ataques de phishing?",
+        options:["Diversão","Urgência / medo","Curiosidade apenas","Reciprocidade"], correct:1,
+        explain:"O 'você tem 1h antes de bloquear' é clássico." },
+      { q:"Pendrive 'perdido' perto da empresa é um caso de:",
+        options:["Vishing","Tailgating","Baiting","Whaling"], correct:2,
+        explain:"Baiting = isca. A vítima conecta por curiosidade." },
+      { q:"Ao receber link suspeito, a atitude mais segura é:",
+        options:["Clicar e ver no que dá","Encaminhar pra galera primeiro","Abrir o app/site oficial manualmente","Ligar pro atacante"], correct:2,
+        explain:"Nunca use o link da mensagem — vá ao canal oficial por conta própria." }
+    ], { title:"Fixando a Aula 5" });
+  </script>
+</body></html>

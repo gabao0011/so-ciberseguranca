@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz final — Cibersegurança</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="cyber" data-page="quiz">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="cyber.html">Cibersegurança</a><span>›</span> Quiz final</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip ok">Quiz final • Cibersegurança</span>
+          <h1>Desafio Cibersegurança — 20 questões</h1>
+          <p class="lead">Prova final do módulo. Cobre todas as 12 aulas.</p>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q:"Os três pilares da Tríade CIA são:",
+        options:["Certificado, Inteligência, Autoridade","Confidencialidade, Integridade, Disponibilidade","Cifra, Internet, Antivírus","Controle, Identidade, Acesso"], correct:1,
+        explain:"C.I.A. — clássico em segurança." },
+      { q:"Um ataque DDoS ataca qual pilar?",
+        options:["Confidencialidade","Integridade","Disponibilidade","Nenhum"], correct:2,
+        explain:"Derruba o serviço: disponibilidade." },
+      { q:"Qual destes É malware?",
+        options:["Firewall","Worm","VPN","Hash"], correct:1, explain:"Worm é malware que se replica sozinho." },
+      { q:"Principal defesa contra ransomware:",
+        options:["Anti-ransomware","Backup offline atualizado","Trocar a senha toda semana","Reinstalar o Windows"], correct:1,
+        explain:"Com backup você não depende de pagar resgate." },
+      { q:"Phishing explora principalmente:",
+        options:["Falhas de hardware","O fator humano","Criptografia fraca","Bugs do kernel"], correct:1,
+        explain:"É engenharia social — manipula pessoas." },
+      { q:"Um link 'bit.ly/3xk9n' num e-mail sobre prêmio é:",
+        options:["Link curto normal","Red flag (bandeira vermelha)","Sinal de confiança","Obrigatório por lei"], correct:1,
+        explain:"Encurtador esconde o destino e é comum em golpes." },
+      { q:"A senha mais forte é:",
+        options:["Abc@123","gabriel05","pangarea-verde-pula-do-telhado!","123123"], correct:2,
+        explain:"Comprimento + imprevisibilidade vencem." },
+      { q:"2FA adiciona:",
+        options:["Uma segunda senha igual","Um segundo fator (ex.: código do app)","Mais memória ao PC","Outro antivírus"], correct:1,
+        explain:"Multi-fator: algo que você sabe + algo que você tem." },
+      { q:"Criptografia assimétrica usa:",
+        options:["Uma chave só","Um par de chaves (pública/privada)","Três chaves","Zero chaves"], correct:1,
+        explain:"Par: pública cifra, privada decifra (ou vice-versa para assinatura)." },
+      { q:"Hash é:",
+        options:["Uma senha temporária","Um resumo irreversível do conteúdo","Um firewall","Um vírus"], correct:1,
+        explain:"Hash produz saída de tamanho fixo e não tem 'volta'." },
+      { q:"A porta 443 é usada por:",
+        options:["HTTP","HTTPS","FTP","Telnet"], correct:1, explain:"443 é HTTPS (TLS sobre TCP)." },
+      { q:"VPN serve para:",
+        options:["Ganhar internet grátis","Criar um túnel criptografado","Aumentar bateria","Fazer backup"], correct:1,
+        explain:"Protege o tráfego ao cifrar tudo até o servidor VPN." },
+      { q:"SQL Injection é evitado com:",
+        options:["Prepared statements / parâmetros","Senhas maiores","Usar MySQL em vez de PostgreSQL","Desligar o banco"], correct:0,
+        explain:"Separar SQL do dado do usuário é a solução correta." },
+      { q:"XSS mira:",
+        options:["Servidor de banco","Navegador de outros usuários","Impressora","Roteador"], correct:1,
+        explain:"JS malicioso executa no navegador da vítima." },
+      { q:"LGPD é a lei:",
+        options:["Geral de Dados do mundo","Brasileira de proteção de dados pessoais","De pirataria","De direito autoral"], correct:1,
+        explain:"Lei Geral de Proteção de Dados (2018)." },
+      { q:"Quem fiscaliza a LGPD é:",
+        options:["Polícia Federal","ANPD","Receita Federal","INSS"], correct:1,
+        explain:"Autoridade Nacional de Proteção de Dados." },
+      { q:"Backup 3-2-1 significa:",
+        options:["3 cópias, 2 mídias, 1 fora do local","3 senhas, 2 firewalls, 1 VPN","1 backup por dia durante 3 dias","3 pendrives iguais"], correct:0,
+        explain:"Clássico: redundância e separação geográfica." },
+      { q:"Red team:",
+        options:["Defende a rede","Ataca simulando adversário (com autorização)","Escreve a LGPD","Cria hardware"], correct:1,
+        explain:"Testa as defesas da organização." },
+      { q:"MITM significa:",
+        options:["Manutenção Interna","Man in the Middle","Máquina Inteligente Multiuso","Muro Interno Multimarca"], correct:1,
+        explain:"Atacante entre você e o destino, lendo/alterando dados." },
+      { q:"Sobre senhas, o certo é:",
+        options:["Usar a mesma em vários sites, mas fortíssima","Usar senhas únicas e longas, guardadas num gerenciador","Anotar num post-it no monitor","Mandar por e-mail pra si mesmo"], correct:1,
+        explain:"Gerenciador de senhas é o caminho moderno." }
+    ], { title:"Quiz final — Cibersegurança" });
+  </script>
+</body></html>

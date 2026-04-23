@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrada e Saída (E/S) — Aula 9</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-section="so" data-page="es">
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs"><a href="index.html">Início</a><span>›</span><a href="so.html">Sistemas Operacionais</a><span>›</span> E/S</nav>
+      <div class="lesson-layout">
+        <article class="lesson">
+          <span class="chip so">Aula 9 • Sistemas Operacionais</span>
+          <h1>Entrada e Saída (E/S)</h1>
+          <p class="lead">
+            Teclado, mouse, disco, rede, impressora, câmera… cada um desses dispositivos
+            é tratado pelo S.O. com a ajuda de um <strong>driver</strong> e de um mecanismo
+            chamado <strong>interrupção</strong>.
+          </p>
+
+          <h2>Categorias de dispositivos</h2>
+          <ul>
+            <li><strong>Entrada:</strong> teclado, mouse, microfone, câmera, scanner.</li>
+            <li><strong>Saída:</strong> monitor, impressora, alto-falante.</li>
+            <li><strong>Entrada e saída:</strong> disco, pendrive, placa de rede.</li>
+          </ul>
+
+          <h2>Drivers</h2>
+          <p>
+            Um driver é um pequeno programa (normalmente do fabricante) que o kernel usa
+            para <em>conversar</em> com um hardware específico. Sem driver, o sistema não
+            sabe usar aquele dispositivo.
+          </p>
+
+          <h2>Comunicação: polling x interrupção</h2>
+          <table>
+            <thead><tr><th>Método</th><th>Como funciona</th><th>Problema</th></tr></thead>
+            <tbody>
+              <tr><td>Polling</td><td>CPU pergunta o tempo todo: "Chegou? Chegou? Chegou?"</td><td>Gasta CPU à toa.</td></tr>
+              <tr><td>Interrupção</td><td>O hardware avisa a CPU quando tem algo.</td><td>Mais eficiente — usado hoje.</td></tr>
+            </tbody>
+          </table>
+
+          <h2>DMA — Direct Memory Access</h2>
+          <p>
+            Para não sobrecarregar a CPU copiando grandes volumes de dados,
+            existe o <strong>DMA</strong>: o dispositivo escreve direto na RAM
+            e só avisa a CPU quando termina.
+          </p>
+
+          <h2>Buffering, caching e spooling</h2>
+          <ul>
+            <li><strong>Buffering:</strong> guarda um pedaço na RAM antes de entregar/enviar (ex.: vídeo carregando).</li>
+            <li><strong>Caching:</strong> guarda uma cópia do que foi lido recentemente, pra não ter que ir no disco de novo.</li>
+            <li><strong>Spooling:</strong> fila de arquivos esperando o dispositivo (ex.: fila de impressão).</li>
+          </ul>
+
+          <h2>Por que o pendrive "piscou"?</h2>
+          <p>
+            O sistema escreve em cache e só de vez em quando manda tudo para o pendrive.
+            Se você arranca na hora errada, os dados podem se perder. Por isso existe
+            o "remover com segurança" — ele força o <em>flush</em> do cache.
+          </p>
+
+          <h2>Exercício rápido</h2>
+          <div class="quiz" id="quiz"></div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/layout.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    Quiz.render(document.getElementById("quiz"), [
+      { q: "Qual método evita que a CPU fique perguntando o tempo todo se o dispositivo tem dado novo?",
+        options: ["Polling", "Interrupção", "Loop infinito", "Cache"], correct: 1,
+        explain: "Interrupções permitem que o dispositivo avise a CPU apenas quando há algo para tratar."
+      },
+      { q: "DMA serve para:",
+        options: [
+          "Transferir dados entre dispositivo e memória sem passar pela CPU.",
+          "Aumentar a velocidade do processador.",
+          "Criptografar dados no disco.",
+          "Detectar vírus em pendrives."
+        ], correct: 0,
+        explain: "DMA libera a CPU durante transferências grandes, acelerando o sistema todo."
+      }
+    ], { title: "Fixando a Aula 9" });
+  </script>
+</body>
+</html>
